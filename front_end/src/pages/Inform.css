@@ -1,0 +1,9 @@
+.page-container{
+    padding: 0 5% 10px;
+    margin: 20px;
+    border: 2px solid rgb(54, 93, 165);
+    border-radius: 8px;
+    box-shadow: 10px 10px 5px rgb(221, 218, 218);
+    width: 50%;
+    min-height: 70vh;
+}
