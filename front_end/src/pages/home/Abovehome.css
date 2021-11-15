@@ -1,0 +1,42 @@
+.card{
+    border-radius: 30px;
+    
+}
+.iconabove{
+    color: rgba(46, 58, 89, 1);
+    font-size:40px !important;
+    
+    
+    
+}
+.cardtitle{
+    padding-top: 20px;
+    color: rgba(0, 63, 107, 1) !important;
+    ;
+}
+
+.cardoftest{
+    color:  rgba(0, 0, 0, 1) !important;
+    ;
+    font-weight: 400;
+}
+.col-lg-4{
+    height: 300px;
+}
+.button_center{
+    
+    position: absolute;
+    bottom: 8%;
+    
+    
+   
+
+   
+
+}
+.btn-primary{
+    background-color:  rgba(0, 63, 107, 1);
+    color: rgba(255, 255, 255, 1);
+
+    ;
+}
