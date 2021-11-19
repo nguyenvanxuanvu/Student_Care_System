@@ -5,7 +5,8 @@ const Home = () => {
   return (
     <div class="row w-100">
 
-      <div class="col-9">
+
+       <div class="col-9">
            <Abovehome/>
 
      </div>

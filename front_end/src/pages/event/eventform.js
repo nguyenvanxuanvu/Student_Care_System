@@ -1,67 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVENT</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.0/font/bootstrap-icons.css">
-</head>
-
-<body>
-
-
-    <nav aria-label="breadcrumb">
+import React, { Component } from 'react';
+import './event.css' 
+const EventForm = () => {
+    return(
+        <div class="container addevent">
+    <div class="col-8 pt-5 ps-5">
+ 
         
-        <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Staff</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add event</li>
-        </ol>
-    </nav>
 
     <div class="container">
-        <div class="col-12">
+        <h3 align-items-center>Sự kiện mới</h3>
+        <div class="col-10 pt-3">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="" placeholder="">
+                <input type="text" class="form-control" id="floatingInput" value="" placeholder=""/>
                 <label for="floatingInput">EventID</label>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-10">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="" placeholder="">
+                <input type="text" class="form-control" id="floatingInput" value="" placeholder=""/>
                 <label for="floatingInput">Type</label>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-10">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="" placeholder="">
+                <input type="text" class="form-control" id="floatingInput" value="" placeholder=""/>
                 <label for="floatingInput">EventName</label>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-10">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="" placeholder="">
+                <input type="text" class="form-control" id="floatingInput" value="" placeholder=""/>
                 <label for="floatingInput">Organizer</label>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-10">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="" placeholder="">
+                <input type="text" class="form-control" id="floatingInput" value="" placeholder=""/>
                 <label for="floatingInput">Place</label>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-10">
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" value="" placeholder="">
+                <input type="email" class="form-control" id="floatingInput" value="" placeholder=""/>
                 <label for="floatingInput">ParticipantMaxNum</label>
             </div>
         </div>
         <div class="row g-2">
-                <div class="col-6">
+                <div class="col-5">
                     <div class="form-floating mb-3">
                         <legend>SDate</legend>
                         <div class="col-md">
@@ -74,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <div class="form-floating mb-3">
                         <legend>EDate</legend>
                         <div class="col-md">
@@ -88,31 +73,18 @@
                     </div>
                 </div>
             </div>
-        <div class="col-12">
+        <div class="col-10">
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="" placeholder="">
+                <input type="text" class="form-control" id="floatingInput" value="" placeholder=""/>
                 <label for="floatingInput">CaringstaffID</label>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
+    </div>
+    </div>
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
-</body>
-
-</html>
+    )
+    }
+export default EventForm;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./Form.css";
-
+import Righthome from '../home/righthome';
 class AppointmentForm extends Component{
     constructor(props){
         super(props);
@@ -28,6 +28,8 @@ class AppointmentForm extends Component{
     }
     render(){
     return (
+        <div class="row w-100">
+      <div class="col-9">
         <div className="container mt-30">
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -86,6 +88,11 @@ class AppointmentForm extends Component{
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
+        <div class="col-2">
+        <Righthome />
+      </div>
         </div>
     );
     }

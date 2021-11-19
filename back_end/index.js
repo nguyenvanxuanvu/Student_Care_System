@@ -6,6 +6,27 @@ const cors = require("cors")
 
 app.use(cors())
 
+app.get("/event1/", function(req, res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    var id = req.query.id
+     
+    database.getEventWithID(id,function(resultQuery){
+        console.log(resultQuery)
+        res.send(resultQuery);
+        
+    });
+});
 // GetEvent 
 app.get("/event", function(req, res){
     if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
@@ -27,6 +48,8 @@ app.get("/event", function(req, res){
     });
 });
 
+
+
 // GetNews
 app.get("/news", function(req, res){
     if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
@@ -47,6 +70,8 @@ app.get("/news", function(req, res){
         
     });
 });
+
+
 
 // GetJob
 app.get("/job", function(req, res){

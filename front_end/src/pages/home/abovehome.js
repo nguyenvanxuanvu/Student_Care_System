@@ -1,9 +1,11 @@
 import React from "react";
 import "./Abovehome.css";
-
+import { NavLink } from "react-router-dom";
 import { ImClock, BsCalendarCheck, RiFilePaperLine } from "react-icons/all";
 import background from "../../images/background.png";
+import { useAlert } from 'react-alert'
 const Abovehome = () => {
+  const alert = useAlert()
   return (
     <div
       class="bg_image"
@@ -42,8 +44,13 @@ const Abovehome = () => {
                 Thu - Fri : 9:00 - 17:00 <br />
                 Sat - sun : 10:00 - 17:00
               </p>
-              <div class = "button_center">
-              <a class="btn btn-primary" href="#" role="button">Đặt lịch hẹn</a>
+              <div class="button_center">
+                <NavLink
+                  to={"/appointmentform"}
+                  class="btn btn-primary align-items-center"
+                >
+                  Đặt lịch hẹn
+                </NavLink>
               </div>
             </div>
           </div>
@@ -56,8 +63,28 @@ const Abovehome = () => {
               <p class="cardoftest">
                 Chúng tôi luôn sẵn sàng lắng nghe mọi đóng góp từ các bạn ...
               </p>
-              <div class = "button_center">
-              <a class="btn btn-primary" href="#" role="button">Đánh giá</a>
+              <div class="button_center">
+                {/* {
+              localStorage.getItem("userName") &&  <NavLink to={"/ratingform"} class="btn btn-primary align-items-center">
+              Đánh giá
+              </NavLink>
+                }
+                {
+                  !localStorage.getItem("userName") && 
+                } */}
+                <div class="btn btn-primary align-items-center"
+                  onClick={() => {
+                    if(!localStorage.getItem("userName"))
+                    alert.show('Cần đăng nhập để thực hiện đánh giá')
+                    
+                  
+                    else{
+                     
+                    }
+                  }}
+                >
+                  Đánh giá
+                </div>
               </div>
             </div>
           </div>

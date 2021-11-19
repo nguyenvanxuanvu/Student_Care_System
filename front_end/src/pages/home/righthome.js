@@ -9,6 +9,8 @@ import job from "../../images/job.jpg";
 import news from "../../images/news.jpg";
 import event from "../../images/event.jpg";
 import Informationcard from "./informationcard";
+import Moment from 'moment'
+import { removeVI, DefaultOption } from "jsrmvi";
 const Righthome = () => {
   var listAll = [];
 
@@ -16,7 +18,7 @@ const Righthome = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/job").then(function (response) {
-      setlistJob(response.data);
+      setlistJob(response.data[0]);
     });
   }, []);
 
@@ -24,7 +26,7 @@ const Righthome = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/event").then(function (response) {
-      setlistEvents(response.data);
+      setlistEvents(response.data[0]);
     });
   }, []);
 
@@ -32,7 +34,7 @@ const Righthome = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/news").then(function (response) {
-      setlistNews(response.data);
+      setlistNews(response.data[0]);
     });
   }, []);
 
@@ -40,7 +42,7 @@ const Righthome = () => {
 
   useEffect(() => {
     axios.get("http://localhost:3000/scholarship").then(function (response) {
-      setlistScholarship(response.data);
+      setlistScholarship(response.data[0]);
     });
   }, []);
 
@@ -50,6 +52,7 @@ const Righthome = () => {
       ID: comment.ID,
       name: comment.JobName,
       content: comment.Company,
+      date : comment.AddDay,
     };
     listAll.push(each);
   });
@@ -60,6 +63,7 @@ const Righthome = () => {
       ID: comment.ID,
       name: comment.EventName,
       content: comment.Organizer,
+      date : comment.AddDay,
     };
     listAll.push(each);
   });
@@ -70,6 +74,7 @@ const Righthome = () => {
       ID: comment.ID,
       name: comment.Title,
       content: comment.Author,
+      date : comment.AddDay,
     };
     listAll.push(each);
   });
@@ -80,10 +85,16 @@ const Righthome = () => {
       ID: comment.ID,
       name: comment.Name,
       content: comment.Scope,
+      date : comment.AddDay,
     };
     listAll.push(each);
   });
   
+  
+   listAll.sort((a,b)=>{
+      return new Date(b.date) - new Date(a.date)
+      
+   })
   // filter
   
   const [filteredData, setFilteredData] = useState([]);
@@ -98,8 +109,8 @@ const Righthome = () => {
     
     const newFilter = listAll.filter((value) => {
       return (
-        (value.name).toLowerCase().includes(searchWord.toLowerCase()) 
-        || (value.content).toLowerCase().includes(searchWord.toLowerCase()) 
+        (removeVI(value.name)).toLowerCase().includes(removeVI(searchWord.toLowerCase())) 
+        || (removeVI(value.content)).toLowerCase().includes(removeVI(searchWord.toLowerCase())) 
         
       );
     });
@@ -114,6 +125,9 @@ const Righthome = () => {
   };
 
   return (
+    
+        
+      
     <div class="col">
       <div>
         <div class="input-group">
@@ -144,6 +158,8 @@ const Righthome = () => {
                   id={comment.ID}
                   name={comment.name}
                   content={comment.content}
+                  date={Moment(comment.date).utcOffset('+07:00')
+                  .format('DD/MM/YYYY')}
                 />
               </div>
             );
@@ -157,6 +173,8 @@ const Righthome = () => {
                   id={comment.ID}
                   name={comment.name}
                   content={comment.content}
+                  date={Moment(comment.date).utcOffset('+07:00')
+                  .format('DD/MM/YYYY')}
                 />
               </div>
             );
@@ -165,6 +183,7 @@ const Righthome = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 

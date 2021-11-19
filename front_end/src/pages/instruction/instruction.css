@@ -1,0 +1,11 @@
+.instruct{
+    padding-left: 100px !important;
+    padding-top: 10px !important;
+    padding-right: 100px !important;
+    padding-bottom: 50px !important;
+    border-radius: 30px !important;
+}
+.backgr{
+    background-color:rgb(179, 216, 216);
+   
+}

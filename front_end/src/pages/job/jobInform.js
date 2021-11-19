@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import "./job.css";
 
-function JobInform(){
+class JobInform extends React.Component{
+  render(){
         return (
             <div className="page-container">
                 <div className="page-content">
@@ -32,7 +33,7 @@ function JobInform(){
                 </div>
             </div>
         );
-    
+        }
 }
 
 export default JobInform;

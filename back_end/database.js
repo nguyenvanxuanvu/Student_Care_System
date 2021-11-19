@@ -34,7 +34,23 @@ var closeDB = function(){
 // Get Event
 exports.getEvent = function(callbackQuery){
     connect();
-    connection.query("select * from event", function(err, results, fields){
+    var sql = `CALL GetEvent()`;
+    connection.query(sql, function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
+}
+
+exports.getEventWithID = function(id,callbackQuery){
+    connect();
+    
+    var sql = `CALL GetEventWithID(?)`;
+    connection.query(sql,[id] ,function(err, results, fields){
         if(!err){
             callbackQuery(results);
 
@@ -48,8 +64,9 @@ exports.getEvent = function(callbackQuery){
 // Get News
 exports.getNews = function(callbackQuery){
     connect();
-    connection.query("select * from news", function(err, results, fields){
+    connection.query("CALL getNews()", function(err, results, fields){
         if(!err){
+    
             callbackQuery(results);
 
         }
@@ -62,7 +79,7 @@ exports.getNews = function(callbackQuery){
 // Get News
 exports.getJob = function(callbackQuery){
     connect();
-    connection.query("select * from job", function(err, results, fields){
+    connection.query("CALL getJob()", function(err, results, fields){
         if(!err){
             callbackQuery(results);
 
@@ -76,7 +93,7 @@ exports.getJob = function(callbackQuery){
 // Get Scholarship
 exports.getScholarship = function(callbackQuery){
     connect();
-    connection.query("select * from scholarship", function(err, results, fields){
+    connection.query("call getScholarship()", function(err, results, fields){
         if(!err){
             callbackQuery(results);
 

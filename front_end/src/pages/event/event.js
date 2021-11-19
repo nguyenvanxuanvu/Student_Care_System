@@ -2,14 +2,17 @@ import Righthome from "../home/righthome";
 import InforCard from "../../components/inforCard"
 import { useEffect, useState } from "react";
 import "./event.css";
+import Moment from 'moment'
+import { NavLink } from 'react-router-dom';
 import event from '../../images/event.jpg'
 import axios from "axios";
+import EventInform from './eventInformation'
 const Event = () => {
   const [listEvents, setlistEvents] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:3000/event").then(function (response) {
-      setlistEvents(response.data);
+      setlistEvents(response.data[0]);
     });
   }, []);
 
@@ -25,7 +28,10 @@ const Event = () => {
             return (
               
                 <div class="col-lg-6  pt-5">
-                  <InforCard img={event} id={comment.ID} name={comment.EventName} content={comment.Organizer}/>
+                  
+                  <InforCard link="/event/"  img={event} id={comment.ID} name={comment.EventName} content={comment.Organizer} date={Moment(comment.AddDay).utcOffset('+07:00')
+                  .format('DD/MM/YYYY')}/>
+                  
                 </div>
                
               

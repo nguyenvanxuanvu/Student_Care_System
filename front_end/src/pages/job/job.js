@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import "./job.css";
 import job from "../../images/job.jpg";
 import axios from "axios";
+import Moment from 'moment'
 const Job = () => {
   const [listJob, setlistJob] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:3000/job").then(function (response) {
-      setlistJob(response.data);
+      setlistJob(response.data[0]);
     });
   }, []);
 
@@ -25,10 +26,13 @@ const Job = () => {
                 return (
                   <div class="col-lg-6  pt-5">
                     <InforCard
+                      link={"/job/"}
                       img={job}
                       id={comment.ID}
                       name={comment.JobName}
                       content={comment.Company}
+                      date={Moment(comment.AddDay).utcOffset('+07:00')
+                  .format('DD/MM/YYYY')}
                     />
                   </div>
                 );

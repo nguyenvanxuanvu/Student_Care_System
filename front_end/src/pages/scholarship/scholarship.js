@@ -2,14 +2,16 @@ import Righthome from "../home/righthome";
 import InforCard from "../../components/inforCard"
 import { useEffect, useState } from "react";
 import "./scholarship.css";
+import Moment from 'moment'
 import scholarship from '../../images/scholarship.png'
 import axios from "axios";
+
 const News = () => {
   const [listScholarship, setlistScholarship] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:3000/scholarship").then(function (response) {
-      setlistScholarship(response.data);
+      setlistScholarship(response.data[0]);
     });
   }, []);
 
@@ -25,7 +27,8 @@ const News = () => {
             return (
               
                 <div class="col-lg-6  pt-5">
-                  <InforCard img={scholarship} id={comment.ID} name={comment.Name} content={comment.Scope}/>
+                  <InforCard link= {"/scholarship/"} img={scholarship} id={comment.ID} name={comment.Name} content={comment.Scope} date={Moment(comment.AddDay).utcOffset('+07:00')
+                  .format('DD/MM/YYYY')}/>
                 </div>
                
               
