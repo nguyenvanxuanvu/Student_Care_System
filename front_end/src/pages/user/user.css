@@ -1,0 +1,7 @@
+.card{
+    width: 100%;
+    border-radius: 8px;
+}
+.card .list-group-item{
+    background: none;
+}

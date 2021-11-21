@@ -83,8 +83,9 @@ const Navbar = ({ auth, setAuth }) => {
               title={<span className="text-thongtin">Tài khoản</span>}
               activeStyle
             >
-              <NavDropdown.Item href="#">Thông tin cá nhân</NavDropdown.Item>
-              <NavDropdown.Item href="#">abc</NavDropdown.Item>
+              <NavDropdown.Item href="/user">Thông tin cá nhân</NavDropdown.Item>
+              <NavDropdown.Item href="/representative">Thông tin người đại diện</NavDropdown.Item>
+              <NavDropdown.Item href="#">Gửi tin nhắn</NavDropdown.Item>
               <NavDropdown.Item href="#" onClick={logOut}>Đăng xuất</NavDropdown.Item>
             </NavDropdown>
           </div>

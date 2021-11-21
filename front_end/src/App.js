@@ -18,6 +18,9 @@ import  AppointmentForm from './pages/appointment/FormAppointment'
 import RatingForm from './pages/rating/FormRating'
 import Login from './pages/login/login'
 import EventForm from './pages/event/eventform';
+import userInfo from './pages/user/userInfor';
+import repreInfo from './pages/user/repreInfor';
+
 import { useEffect } from 'react';
 import { useState } from 'react';
 function App() {
@@ -50,7 +53,9 @@ function App() {
         <Route exact path='/appointmentform' component={AppointmentForm} />
         <Route exact path='/ratingform' component={RatingForm} />
         <Route exact path='/addEvent' component={EventForm} />
-        
+        <Route exact path='/user' component={userInfo}/>
+        <Route exact path='/representative' component={repreInfo}/>
+
       </Switch>
       
     </Router>
