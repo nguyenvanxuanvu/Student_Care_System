@@ -1,21 +1,62 @@
 import React, { Component } from 'react';
 import '../Inform.css';
+import { useEffect, useState } from "react";
+import axios from 'axios'
+import Righthome from '../home/righthome';
+import { useParams } from 'react-router';
+import Moment from 'moment'
 
-function NewsInform(){
-        return (
-            <div className="page-container">
-                <div className="page-content">
-                    <p>Giải trí</p>
-                    <h1>Học đường hài hước</h1>
+
+const NewsInform = () =>  {
+  const [listEvents, setlistEvents] = useState([]);
+ let {id} = useParams();
+  
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/news" ,{params: {id:id}}).then(function (response) {
+      setlistEvents(response.data[0]);
+      })
+    ;
+  }, []);
+  var topic;
+  var title;
+  var content;
+  var author;
+  var addDay;
+    for (let i of listEvents){
+      if (i.ID === id){
+          topic = i.Topic;
+          title = i.Title;
+          content = i.Content;
+          author = i.Author;
+          addDay = i.AddDay;
+
+      }
+    }
+        
+          return (
+            <div class="row w-100 ps-5">
+                <div class="col-9 pt-4 ps-5 ">
+                    <div className="page-container">
+                        <div className="page-content">
+                            <p>{topic}</p>
+                            <h2>{title}</h2>
+                        </div>
+                        <div>
+                            <p>{Moment(addDay).utcOffset("+07:00")
+                        .format("DD/MM/YYYY")}</p>
+                            <p>{content}</p>
+                            <strong>Tác giả:</strong> 
+                            <p>{author}</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <p>2021-01-01</p>
-                    <p>Các bạn có thể giải trí bằng các mẩu chuyện cười ở link sau: https://azuiaz.com/the-loai/hoc-duong/ </p>
-                    Tác giả: <p>Trần Văn An</p>
+                <div class="col-2">
+                    <Righthome />
                 </div>
-            </div>
+            </div>                    
         );
-    
+        
 }
 
 export default NewsInform;
