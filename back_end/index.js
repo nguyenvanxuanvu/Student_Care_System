@@ -116,6 +116,50 @@ app.get("/scholarship", function(req, res){
 });
 
 
+app.get("/s_requires/", function(req, res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    var id = req.query.id
+     
+    database.getScholarshipRequire(id,function(resultQuery){
+        console.log(resultQuery)
+        res.send(resultQuery);
+        
+    });
+});
+
+
+app.get("/j_requires/", function(req, res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    var id = req.query.id
+     
+    database.getJobRequire(id,function(resultQuery){
+        console.log(resultQuery)
+        res.send(resultQuery);
+        
+    });
+});
 
 // exports.getEventData = function(){
 //     app.get("/event", function(req, res){

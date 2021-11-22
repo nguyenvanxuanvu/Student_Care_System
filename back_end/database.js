@@ -12,7 +12,6 @@ var connect = function(){
     connection.connect(function(err){
         if (!err){
             console.log('Kết nối thành công')
-
         }
         else{
             console.log('error connect')
@@ -115,4 +114,37 @@ exports.insertData= function(ID,Type,EventName,Organizer,Place,ParticipantMaxNum
             console.log(err)
         }
     } )
+}
+
+
+// Get Scholarship requirement
+exports.getScholarshipRequire = function(id,callbackQuery){
+    connect();
+    
+    var sql = `CALL getScholarRequire(?)`;
+    connection.query(sql,[id] ,function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
+}
+
+// Get Scholarship requirement
+exports.getJobRequire = function(id,callbackQuery){
+    connect();
+    
+    var sql = `CALL getJobRequire(?)`;
+    connection.query(sql,[id] ,function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
 }

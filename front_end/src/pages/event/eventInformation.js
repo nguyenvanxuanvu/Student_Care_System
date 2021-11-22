@@ -7,7 +7,7 @@ import { useParams } from 'react-router';
 import Moment from 'moment'
 const EventInform = () =>  {
   const [listEvents, setlistEvents] = useState([]);
- let {id} = useParams();
+  let {id} = useParams();
   
 
   useEffect(() => {
@@ -46,19 +46,19 @@ const EventInform = () =>  {
                 <div className="page-content">
                     <p>{type}</p>
                     <h1>{name}</h1>
-                    
+                    <br/>
                     
                 </div>
                 <div>
-                  <h3>Địa điểm</h3>
+                  <h4>Địa điểm</h4>
                   <p>{place}</p>
                 </div>
                 <div>
-                  <h3>Số lượng tham gia dự kiến</h3>
+                  <h4>Số lượng tham gia dự kiến</h4>
                     <p>{num}</p>
                 </div>
                 <div>
-                  <h3>Thời gian</h3>
+                  <h4>Thời gian</h4>
                   <p><strong>{Moment(startTime).utcOffset('+07:00')
                   .format('hh:mm DD/MM/YYYY')}</strong> to <strong>{Moment(endTime).utcOffset('+07:00')
                   .format('hh:mm DD/MM/YYYY')}</strong></p>

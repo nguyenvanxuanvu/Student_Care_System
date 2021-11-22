@@ -7,8 +7,15 @@ import { useParams } from 'react-router';
 import Moment from 'moment'
 const JobInform = () =>  {
   const [listEvents, setlistEvents] = useState([]);
- let {id} = useParams();
+  const [listJobRequire, setlistJobRequire] = useState([]);
+
+  let {id} = useParams();
   
+  useEffect(() => {
+    axios.get("http://localhost:3000/j_requires", {params: {id:id}}).then(function (response) {
+      setlistJobRequire(response.data[0]);
+    });
+  }, []);
 
   useEffect(() => {
     axios.get("http://localhost:3000/job/" ,{params: {id:id}}).then(function (response) {
@@ -47,17 +54,25 @@ const JobInform = () =>  {
                     
                 </div>
                 <div>
-                  <h3>Đơn vị tuyển dụng</h3>
+                  <h4>Đơn vị tuyển dụng</h4>
                   <p>{company}</p>
                 </div>
                 <div>
-                  <h3>Yêu cầu công việc</h3>
-                  <ul>
-                    <li>{phonenum}</li>
-                  </ul>
+                  <h4>Yêu cầu công việc</h4>
+                  <div>
+                  {listJobRequire.map((comment, key) => {
+                  return (
+                    <div>
+                      <ul>
+                        <li>{comment.ARequirement}</li>
+                      </ul>
+                    </div>
+                  );
+                })}
+                </div>
                 </div>
                 <div>
-                <h3>Thông tin liên lạc</h3>
+                <h4>Thông tin liên lạc</h4>
                   <ul>
                     <li><strong>Địa chỉ</strong><p>{address}</p></li>
                     <li><strong>Số điện thoại</strong><p>{phonenum}</p></li>
@@ -65,7 +80,7 @@ const JobInform = () =>  {
                   </ul>
                 </div>
                 <div>
-                  <h3>Thời gian</h3>
+                  <h4>Thời gian</h4>
                   <p><strong>{Moment(startTime).utcOffset('+07:00')
                         .format("DD/MM/YYYY")}</strong> đến <strong>{Moment(endTime).utcOffset('+07:00')
                   .format("DD/MM/YYYY")}</strong></p>
