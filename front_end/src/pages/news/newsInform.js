@@ -1,3 +1,7 @@
+
+
+
+   
 import React, { Component } from 'react';
 import '../Inform.css';
 import { useEffect, useState } from "react";
@@ -24,7 +28,7 @@ const NewsInform = () =>  {
   var author;
   var addDay;
     for (let i of listEvents){
-      if (i.ID === id){
+      if (i.ID.toString() === id){
           topic = i.Topic;
           title = i.Title;
           content = i.Content;

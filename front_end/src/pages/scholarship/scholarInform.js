@@ -31,7 +31,7 @@ const ScholarInform = () =>  {
   var addDay;
 
     for (let i of listEvents){
-      if (i.ID === id){
+      if (i.ID.toString() === id){
           name = i.Name;
           scope = i.Scope;
           value = i.Value;

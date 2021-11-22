@@ -1,7 +1,37 @@
 import Righthome from "../home/righthome";
 import "./user.css";
+import { useEffect, useState }  from "react";
+import axios from "axios";
+import Moment from 'moment'
+const UserInfo = () => {
+    const [info,setInfo] = useState([])
+    let id = localStorage.getItem("userid");
+    useEffect(() => {
+        axios.get("http://localhost:3000/studentInfo/" ,{params: {id:id}}).then(function (response) {
+            setInfo(response.data[0]);
+          })
+        ;
+        
+      }, []);
+      
+  var Name;
+  var DateOfBirth;
+  var PhoneNum;
+  var Address;
+  var Email;
+  var GPA;
+  
+    for (let i of info){
+        Name = i.Name;
+        DateOfBirth = i.DateOfBirth;
+        PhoneNum = i.PhoneNum;
+        Address = i.Address;
+        Email = i.Email;
+        GPA = i.GPA;
+          
 
-const userInfo = () => {
+      }
+    
   return (
     <div className="row w-100">
     
@@ -12,22 +42,23 @@ const userInfo = () => {
         <div class="card">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Họ và tên:
-                    <p>Nguyễn Văn An</p>
+                    <p>{Name}</p>
                 </li>
                 <li class="list-group-item">MSSV:
-                    <p>19123546</p>
+                    <p>{id}</p>
                 </li>
                 <li class="list-group-item">Ngày sinh:
-                    <p>12/12/2001</p>
+                    <p>{Moment(DateOfBirth).utcOffset('+07:00')
+                  .format('DD/MM/YYYY')}</p>
                 </li>
                 <li class="list-group-item">Số điện thoại:
-                    <p>090909099</p>
+                    <p>{PhoneNum}</p>
                 </li>
                 <li class="list-group-item">Địa chỉ:
-                    <p>An Giang</p>
+                    <p>{Address}</p>
                 </li>
                 <li class="list-group-item">Email:
-                    <p>Annguyen@gmail.com</p>
+                    <p>{Email}</p>
                 </li>
             </ul>
         </div>
@@ -43,4 +74,4 @@ const userInfo = () => {
   );
 };
 
-export default userInfo;
+export default UserInfo;

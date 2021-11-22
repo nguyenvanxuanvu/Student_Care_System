@@ -13,7 +13,7 @@ import Moment from 'moment'
 import { removeVI, DefaultOption } from "jsrmvi";
 const Righthome = () => {
   var listAll = [];
-
+  const [language, setlanguage] = useState(true);
   const [listJob, setlistJob] = useState([]);
 
   useEffect(() => {
@@ -45,7 +45,15 @@ const Righthome = () => {
       setlistScholarship(response.data[0]);
     });
   }, []);
-
+  
+  useEffect(() => {
+    if (localStorage.getItem("language")){
+      setlanguage(true);
+    }
+    else{
+      setlanguage(false)
+    }
+  }, []);
   listJob.map((comment, key) => {
     let each = {
       img: job,
@@ -53,6 +61,7 @@ const Righthome = () => {
       name: comment.JobName,
       content: comment.Company,
       date : comment.AddDay,
+      link: "/job/"
     };
     listAll.push(each);
   });
@@ -64,6 +73,7 @@ const Righthome = () => {
       name: comment.EventName,
       content: comment.Organizer,
       date : comment.AddDay,
+      link: "/event/"
     };
     listAll.push(each);
   });
@@ -75,6 +85,7 @@ const Righthome = () => {
       name: comment.Title,
       content: comment.Author,
       date : comment.AddDay,
+      link: "/news/"
     };
     listAll.push(each);
   });
@@ -86,6 +97,7 @@ const Righthome = () => {
       name: comment.Name,
       content: comment.Scope,
       date : comment.AddDay,
+      link: "/scholarship/"
     };
     listAll.push(each);
   });
@@ -114,7 +126,10 @@ const Righthome = () => {
         
       );
     });
+    
 
+
+    
     if (searchWord === "") {
       setFilteredData(listAll);
      
@@ -130,11 +145,12 @@ const Righthome = () => {
       
     <div class="col">
       <div>
+
         <div class="input-group">
           <span class="input-group-text" id="basic-addon1">
             {<BsSearch />}
           </span>
-          <input
+          {language &&(<input
             type="search"
             placeholder={"Tìm kiếm"}
             value={wordEntered}
@@ -142,11 +158,21 @@ const Righthome = () => {
             class="form-control rounded"
             aria-label="Search"
             aria-describedby="search-addon"
-          />
+          />)}
+          {!language && (<input
+            type="search"
+            placeholder={"Search"}
+            value={wordEntered}
+            onChange={handleFilter}
+            class="form-control rounded"
+            aria-label="Search"
+            aria-describedby="search-addon"
+          />)}
         </div>
 
         <div class="pt-2"></div>
-        <h6>Mới ...</h6>
+        {language && (<h6>Mới ...</h6>)}
+        {!language && (<h6>New ...</h6>)}
         <div class="scrollbar align-items-center  ps-2 pe-2">
 
           
@@ -160,6 +186,7 @@ const Righthome = () => {
                   content={comment.content}
                   date={Moment(comment.date).utcOffset('+07:00')
                   .format('DD/MM/YYYY')}
+                  link = {comment.link}
                 />
               </div>
             );
@@ -175,6 +202,7 @@ const Righthome = () => {
                   content={comment.content}
                   date={Moment(comment.date).utcOffset('+07:00')
                   .format('DD/MM/YYYY')}
+                  link = {comment.link}
                 />
               </div>
             );

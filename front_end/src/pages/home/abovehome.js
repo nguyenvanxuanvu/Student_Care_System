@@ -25,12 +25,16 @@ const Abovehome = () => {
           <div class="card">
             <div class="card-body">
               <ImClock class="iconabove" />
-              <h5 class="cardtitle">Thời gian hoạt động trực tuyến</h5>
-
-              <p class="cardoftest">
+              {localStorage.getItem("language") && (<h5 class="cardtitle">Thời gian hoạt động trực tuyến</h5>)}
+              {!localStorage.getItem("language") && (<h5 class="cardtitle">Online uptime</h5>)}
+              {localStorage.getItem("language") && (<p class="cardoftest">
                 Hệ thống đảm bảo hoạt động liên tục từ 7:00 giờ đến 21:00 giờ
                 hàng ngày.
-              </p>
+              </p>)}
+              {!localStorage.getItem("language") && (<p class="cardoftest">
+              The system ensures continuous operation from 7:00 a.m. to 9 p.m
+                daily.
+                </p>)}
             </div>
           </div>
         </div>
@@ -38,19 +42,44 @@ const Abovehome = () => {
           <div class="card">
             <div class="card-body">
               <BsCalendarCheck class="iconabove" />
-              <h5 class="cardtitle">Lịch làm việc trực tiếp tại văn phòng</h5>
-              <p class="cardoftest">
+              {localStorage.getItem("language") && (<h5 class="cardtitle">Lịch làm việc trực tiếp tại văn phòng</h5>)}
+              {!localStorage.getItem("language") && (<h5 class="cardtitle">Work schedule directly at the office</h5>)}
+              {!localStorage.getItem("language") && (<p class="cardoftest">
                 Sun - Wed : 8:00 - 17:00 <br />
                 Thu - Fri : 9:00 - 17:00 <br />
-                Sat - sun : 10:00 - 17:00
-              </p>
+                Sat - sun : 10:00 - 16:00
+              </p>)}
+              {localStorage.getItem("language") && (<p class="cardoftest">
+                Thứ 2 - Thứ 4 : 8:00 - 17:00 <br />
+                Thứ 5 - Thứ 6 : 9:00 - 17:00 <br />
+                Thứ 7 - Chủ Nhật : 10:00 - 16:00
+              </p>)}
               <div class="button_center">
-                <NavLink
+              {localStorage.getItem("type1") && localStorage.getItem("language") && ( <NavLink
                   to={"/appointmentform"}
                   class="btn btn-primary align-items-center"
                 >
                   Đặt lịch hẹn
-                </NavLink>
+                </NavLink>)}
+                {localStorage.getItem("type1") && !localStorage.getItem("language") && ( <NavLink
+                  to={"/appointmentform"}
+                  class="btn btn-primary align-items-center"
+                >
+                  Make an appointment
+                </NavLink>)}
+                {localStorage.getItem("type2") && localStorage.getItem("language") && ( <NavLink
+                  to={"/appointmentlist1"}
+                  class="btn btn-primary align-items-center"
+                >
+                  Xem lịch hẹn của sinh viên
+                </NavLink>)}
+                {localStorage.getItem("type2") && !localStorage.getItem("language") && ( <NavLink
+                  to={"/appointmentlist1"}
+                  class="btn btn-primary align-items-center"
+                >
+                  Student 's appointment
+                </NavLink>)}
+
               </div>
             </div>
           </div>
@@ -59,10 +88,14 @@ const Abovehome = () => {
           <div class="card">
             <div class="card-body">
               <RiFilePaperLine class="iconabove" />
-              <h5 class="cardtitle">Phiếu đánh giá của sinh viên</h5>
-              <p class="cardoftest">
+              {localStorage.getItem("language") && (<h5 class="cardtitle">Phiếu đánh giá của sinh viên</h5>)}
+              {!localStorage.getItem("language") && (<h5 class="cardtitle">Student evaluation sheet</h5>)}
+              {localStorage.getItem("language") && (<p class="cardoftest">
                 Chúng tôi luôn sẵn sàng lắng nghe mọi đóng góp từ các bạn ...
-              </p>
+              </p>)}
+              {!localStorage.getItem("language") && (<p class="cardoftest">
+              We are always ready to listen to any contributions from you...
+              </p>)}
               <div class="button_center">
                 {/* {
               localStorage.getItem("userName") &&  <NavLink to={"/ratingform"} class="btn btn-primary align-items-center">
@@ -75,16 +108,20 @@ const Abovehome = () => {
                 <div class="btn btn-primary align-items-center"
                   onClick={() => {
                     if(!localStorage.getItem("userName"))
-                    alert.show('Cần đăng nhập để thực hiện đánh giá')
-                    
+                    {localStorage.getItem("language") && (alert.show('Cần đăng nhập để thực hiện đánh giá'))}
+                    {!localStorage.getItem("language") && (alert.show('Need to login to make a review'))}
                   
-                    else{
-                     
-                    }
+                    
                   }}
                 >
-                  Đánh giá
-                </div>
+                
+                   {localStorage.getItem("type1") && localStorage.getItem("language") && ("Đánh giá")}
+                   {localStorage.getItem("type2") && localStorage.getItem("language") && ("Xem đánh giá của sinh viên")}
+
+                    {!localStorage.getItem("language") && ("Evaluate")}
+                 
+                
+                 </div>
               </div>
             </div>
           </div>

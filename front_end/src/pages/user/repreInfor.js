@@ -1,7 +1,30 @@
 import Righthome from "../home/righthome";
 import "./user.css";
+import { useEffect, useState }  from "react";
+import axios from "axios";
+import Moment from 'moment'
 
-const repreInfo = () => {
+const RepreInfo = () => {
+    const [repre,setRepre] = useState([])
+    let id = localStorage.getItem("userid");
+    useEffect(() => {
+        axios.get("http://localhost:3000/representInfo/" ,{params: {id:id}}).then(function (response) {
+            setRepre(response.data[0]);
+          })
+        ;
+        
+      }, []);
+      var Name;
+      var PhoneNum;
+  
+  
+    for (let i of repre){
+        Name = i.Name;
+       PhoneNum = i.PhoneNum;
+       
+          
+
+      }
   return (
     <div className="row w-100">
     
@@ -12,10 +35,10 @@ const repreInfo = () => {
         <div class="card">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Họ và tên:
-                    <p>Nguyễn Văn Bình</p>
+                    <p>{Name}</p>
                 </li>
                 <li class="list-group-item">Số điện thoại:
-                    <p>090909098</p>
+                    <p>{PhoneNum}</p>
                 </li>
             </ul>
         </div>
@@ -31,4 +54,4 @@ const repreInfo = () => {
   );
 };
 
-export default repreInfo;
+export default RepreInfo;

@@ -6,7 +6,7 @@ import Moment from 'moment'
 import scholarship from '../../images/scholarship.png'
 import axios from "axios";
 
-const Scholarship = () => {
+const News = () => {
   const [listScholarship, setlistScholarship] = useState([]);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Scholarship = () => {
           <div class="pt-3 ps-5">
             <h3>Học bổng</h3>
         
-          <div class="row pt-3 ps-2 pe-2">
+<div class="row pt-3 ps-2 pe-2">
           {listScholarship.map((comment, key) => {
             return (
               
@@ -46,4 +46,4 @@ const Scholarship = () => {
   );
 };
 
-export default Scholarship;
+export default News;

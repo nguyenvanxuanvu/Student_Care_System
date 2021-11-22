@@ -18,16 +18,19 @@ import  AppointmentForm from './pages/appointment/FormAppointment'
 import RatingForm from './pages/rating/FormRating'
 import Login from './pages/login/login'
 import EventForm from './pages/event/eventform';
-import userInfo from './pages/user/userInfor';
-import repreInfo from './pages/user/repreInfor';
-
 import { useEffect } from 'react';
 import { useState } from 'react';
+import HomeAll from './pages/home/homeAll';
+import UserInfo from './pages/user/userInfor';
+import RepreInfo from './pages/user/repreInfor';
+import Appointmentlist from './pages/appointment/appointmentlist';
+import Appointmentlist1 from './pages/appointment/appointmentlist1';
 function App() {
   const [auth, setAuth] = useState(false);
     useEffect(() => {
-        const USER_NAME = localStorage.getItem("userName");
-        if(USER_NAME) {
+       localStorage.setItem("language", "VI");
+        const EMAIL = localStorage.getItem("email");
+        if(EMAIL) {
             setAuth(true);
         }
     }, [])
@@ -36,6 +39,7 @@ function App() {
       <Navbar auth={auth} setAuth={setAuth} />
       <Switch>
         <Route exact path='/'  render={props => <Home/>} />
+        <Route exact path='/homeAll'  render={props => <HomeAll/>} />
         <Route exact path='/home' render={props => <Home/>}/>
         <Route exact path="/login"  render={props => auth ? <Home/> : <Login auth={auth} setAuth={setAuth}/>}/>
         {/* <Route exact path='/home'  component={Home} /> */}
@@ -53,9 +57,10 @@ function App() {
         <Route exact path='/appointmentform' component={AppointmentForm} />
         <Route exact path='/ratingform' component={RatingForm} />
         <Route exact path='/addEvent' component={EventForm} />
-        <Route exact path='/user' component={userInfo}/>
-        <Route exact path='/representative' component={repreInfo}/>
-
+        <Route exact path='/user/:id' component={UserInfo}/>
+        <Route exact path='/representative/:id' component={RepreInfo}/>
+        <Route exact path='/appointmentlist' component={Appointmentlist}/>
+        <Route exact path='/appointmentlist1' component={Appointmentlist1}/>
       </Switch>
       
     </Router>

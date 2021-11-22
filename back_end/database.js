@@ -12,6 +12,7 @@ var connect = function(){
     connection.connect(function(err){
         if (!err){
             console.log('Kết nối thành công')
+
         }
         else{
             console.log('error connect')
@@ -102,18 +103,64 @@ exports.getScholarship = function(callbackQuery){
         }
     })
 }
-
-
-exports.insertData= function(ID,Type,EventName,Organizer,Place,ParticipantMaxNum,STime,ETime,CaringStaffID, callbackInsert){
+// Get StudentInfo
+exports.getStudentInfoWithID = function(id,callbackQuery){
     connect();
-    connection.query("INSERT INTO `event`(`ID`, `Type`, `EventName`, `Organizer`, `Place`, `ParticipantMaxNum`, `STime`, `ETime`, `CaringStaffID`) VALUES ('" +ID+"','"+Type+"','"+EventName+"','"+Organizer+"','"+Place+",'+'"+ParticipantMaxNum+"','"+STime+"','"+ETime+"','"+CaringStaffID+"')",function(err, results, fields){
+    
+    var sql = `CALL Get_Student(?)`;
+    connection.query(sql,[id] ,function(err, results, fields){
         if(!err){
-            callbackInsert(results);
+            callbackQuery(results);
+
         }
         else{
-            console.log(err)
+            console.log(err);
         }
-    } )
+    })
+}
+
+// Repre Info
+
+exports.getRepresentInfoWithID = function(id,callbackQuery){
+    connect();
+    
+    var sql = `call Get_Representative(?)`;
+    connection.query(sql,[id] ,function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
+}
+// Get Scholarship
+exports.getScholarship = function(callbackQuery){
+    connect();
+    connection.query("call getScholarship()", function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
+}
+
+// Get Appointment
+exports.getAppointment = function(callbackQuery){
+    connect();
+    connection.query("call GetInforAppointment()", function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
 }
 
 
@@ -147,4 +194,46 @@ exports.getJobRequire = function(id,callbackQuery){
             console.log(err);
         }
     })
+}
+
+exports.insertData= function(ID,Type,EventName,Organizer,Place,ParticipantMaxNum,STime,ETime,CaringStaffID, callbackInsert){
+    connect();
+    connection.query("INSERT INTO `event`(`ID`, `Type`, `EventName`, `Organizer`, `Place`, `ParticipantMaxNum`, `STime`, `ETime`, `CaringStaffID`) VALUES ('" +ID+"','"+Type+"','"+EventName+"','"+Organizer+"','"+Place+",'+'"+ParticipantMaxNum+"','"+STime+"','"+ETime+"','"+CaringStaffID+"')",function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+
+
+// addApointment
+exports.insertAppoitment= function(stud_id,app_date,app_time,stu_problem,status,callbackInsert){
+    connect();
+     // var sql = `CALL MakeAppointment(${stud_id},${app_date},${app_time},${stu_problem},${cstaff_id})`;
+     // var sql = `CALL MakeAppointment(1915450, '2021-11-05', '19:30:00', 'Tư vấn về kế hoạch học tập đại học', 'NV78374');`;
+    connection.query(`CALL MakeAppointment(?,?,?,?,?);`,[stud_id,app_date,app_time,stu_problem,status],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+
+exports.updateAppointment= function(stud_id,app_date,app_time,caring_id,callbackInsert){
+    connect();
+     // var sql = `CALL MakeAppointment(${stud_id},${app_date},${app_time},${stu_problem},${cstaff_id})`;
+     // var sql = `CALL MakeAppointment(1915450, '2021-11-05', '19:30:00', 'Tư vấn về kế hoạch học tập đại học', 'NV78374');`;
+    connection.query(`CALL AcceptAppointment(?,?,?,?);`,[stud_id,app_date,app_time,caring_id],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
 }

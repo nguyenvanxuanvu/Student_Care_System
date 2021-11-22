@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "./Form.css";
 import Righthome from '../home/righthome';
+import axios from 'axios'
+import Moment from 'moment'
 class AppointmentForm extends Component{
     constructor(props){
         super(props);
@@ -9,22 +11,56 @@ class AppointmentForm extends Component{
             userid: '',
             problem:'',
             appointdate: '',
-            appointhour: 0
+            appointhour: '',
         };
-        this.onHandleChange = this.onHandleChange.bind(this);
+        
         this.onHandleSubmit = this.onHandleSubmit.bind(this);
     }
-    onHandleChange(event){
-        var target = event.target;
-        var name = target.name;
-        var value = target.value;
-        this.setState({
-            [name] : value
-        });
+    
+    handleDate(e){
+        e = e.toString();
+        var a = e.split('/');
+        return a[2]+'-'+a[0]+'-'+a[1];
+
     }
+    validateForm = () => {
+        var data = this.state;
+
+        if (data.username === '' || data.userid === '' || data.problem === '' ||
+            data.appointdate === '' || data.appointhour === '') {
+            return false;
+        }
+        return true;
+    }
+  
     onHandleSubmit(event){
-        event.preventDefault();
-        console.log(this.state);
+        if (this.validateForm()) {
+            console.log('successful');
+
+            var postData = {
+                StudentID: this.state.userid,
+                 Date: this.state.appointdate,
+                Time: this.state.appointhour,
+                //  Date: Moment(this.state.appointdate).utcOffset('+07:00')
+                //  .format('YYYY-MM-DD'),
+                //  Time: Moment(this.state.appointhour).utcOffset('+07:00')
+                //  .format('hh:mm:ss'),
+                Problem: this.state.problem,
+                
+            };
+            axios.post('/addAppointment', postData)
+                .then()
+                .catch((err) => alert('failure'));
+
+                window.location.href = 'http://localhost:3001/addAppointment'
+            alert('Đặt lịch hẹn thành công')
+        }
+         
+        else {
+            alert('Cần điền đầy đủ thông tin!');
+        }
+
+        
     }
     render(){
     return (
@@ -35,7 +71,9 @@ class AppointmentForm extends Component{
                 <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <div className="panel panel-primary">
                         <div className="panel-heading">
-                            <h3 className="panel-title">Phiếu đặt lịch hẹn tư vấn</h3>
+                            
+                            {/* <h3 className="panel-title">{this.state.appointdate}</h3> */}
+                            <h3 className="panel-title">Đặt lịch hẹn mới</h3>
                         </div>
                         <div className="panel-body">
 
@@ -46,7 +84,7 @@ class AppointmentForm extends Component{
                                 type="text" 
                                 className="form-control" 
                                 name="username" 
-                                onChange={ this.onHandleChange }
+                                onChange= {(event) => this.setState({username : event.target.value})} 
                                 />
                             </div><br/>
                             
@@ -56,7 +94,7 @@ class AppointmentForm extends Component{
                                 type="text" 
                                 className="form-control" 
                                 name="userid" 
-                                onChange={ this.onHandleChange }
+                                onChange={(event) => this.setState({userid : event.target.value})} 
                                 />
                             </div><br/>
                             
@@ -66,18 +104,18 @@ class AppointmentForm extends Component{
                                     className="form-control"
                                     rows="3"
                                     name="problem"
-                                    onChange={ this.onHandleChange }
+                                    onChange={(event) => this.setState({problem : event.target.value})} 
                                 ></textarea>
                             </div><br/>
                             <div className="form-group">
                                 <label for="exampleDate" class="form-label">Ngày hẹn</label>
                                 <input type="date" class="form-control" id="exampleDate"
-                                name="appointdate" onChange={this.onHandleChange}/>
+                                name="appointdate" onChange={(event) => this.setState({appointdate : event.target.value})} />
                             </div><br/>
                             <div className="form-group">
-                                <label class="form-label">Giờ hẹn</label>
+                                <label for="exampleTime" class="form-label">Giờ hẹn</label>
                                 <input type="time" class="form-control" id="exampleTime"
-                                 name="appointhour" onChange={this.onHandleChange}/>
+                                name="appointtime" onChange={(event) => this.setState({appointhour : event.target.value})} />
                             </div><br/>
 
                             <button type="submit" className="btn btn-primary">Gửi</button>

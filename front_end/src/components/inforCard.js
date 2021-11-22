@@ -14,7 +14,8 @@ const InforCard= (props) => {
     <p style={{fontSize: "20px"}} class="card-text">{props.content}</p>
     <p style={{fontSize: "15px"}} class="card-text"><i>{props.date}</i></p>
     <div class="button-fix">
-    <NavLink to={props.link + props.id} class="btn btn-primary"> Xem chi tiết </NavLink>
+    {localStorage.getItem("language") && (<NavLink to={props.link + props.id} class="btn btn-primary"> Xem chi tiết </NavLink>)}
+    {!localStorage.getItem("language") && (<NavLink to={props.link + props.id} class="btn btn-primary"> Details </NavLink>)}
   </div>
   </div>
   

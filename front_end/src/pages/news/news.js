@@ -19,7 +19,8 @@ const News = () => {
       <div class="col-9">
         <div className="mainscroll pt-3 pb-3 ps-3 pe-3">
           <div class="pt-3 ps-5">
-            <h3>Tin tức</h3>
+            {localStorage.getItem("language") && (<h3>Tin tức</h3>)}
+            {!localStorage.getItem("language") && (<h3>News</h3>)}
 
             <div class="row pt-3 ps-2 pe-2">
               {listNews.map((comment, key) => {

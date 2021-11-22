@@ -21,7 +21,8 @@ const Event = () => {
       <div class="col-9">
         <div className="mainscroll pt-3 pb-3 ps-3 pe-3">
           <div class="pt-3 ps-5">
-            <h3>Thông tin sự kiện</h3>
+            {localStorage.getItem('language') && (<h3>Sự kiện</h3>)}
+            {!localStorage.getItem('language') && (<h3>Event</h3>)}
         
 <div class="row pt-3 ps-2 pe-2">
           {listEvents.map((comment, key) => {

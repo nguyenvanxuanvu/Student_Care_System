@@ -7,20 +7,29 @@ import { NavLink } from 'react-router-dom';
 
 export default function Login({auth, setAuth}) {
     var history = useHistory();
-    var userName= "";
+    var ID= "";
     var pwd = "";
-    localStorage.setItem("userName", "xuanvu");
+    localStorage.setItem("email", "vu.nguyenxuanvu231");
     function submitLogin(e) {
         e.preventDefault();
-        console.log(userName);
+       
         console.log(pwd);
         
-        if(userName==='xuanvu' && pwd==='123456'){
+        if(pwd==='1'){
 
         
-        localStorage.setItem("userName", userName);
+        // localStorage.setItem("email", email);
+        localStorage.setItem("type1","true")
         setAuth(true);
+        localStorage.setItem("userid",ID);
         }
+        if(pwd==='2'){
+
+        
+            // localStorage.setItem("email", email);
+            localStorage.setItem("type2","true")
+            setAuth(true);
+            }
         }
         
     
@@ -34,7 +43,7 @@ export default function Login({auth, setAuth}) {
                 </div>
                 <div className='mb-3'>                    
                         <label className='labelForm' ><span className='star'>*</span>Tên đăng nhập</label>               
-                        <input  type='text' class="form-control"  onChange={(event) => userName = event.target.value} />             
+                        <input  type='text' class="form-control"  onChange={(event) => ID = event.target.value} />             
                 </div>
                 <div className='mb-3'>
                         <label className='labelForm'><span className='star'>*</span>Mật khẩu</label>
@@ -42,7 +51,7 @@ export default function Login({auth, setAuth}) {
                 </div>
                 <div className='center addMargin' onClick={submitLogin}>
                     <button type="submit" class="btn btn-primary" onClick={submitLogin}>Đăng nhập</button>
-                    {/* <NavLink to={"/"} type = "submit" class="btn btn-primary align-items-center"> */}
+                    
                 
                 </div>
             </form>

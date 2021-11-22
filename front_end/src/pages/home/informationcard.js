@@ -2,6 +2,7 @@
 import background from '../../images/background.png'
 import news from '../../images/news.jpg'
 import React from "react"
+import { NavLink } from 'react-router-dom'
 import './informationcard.css'
 const Informationcard= (props) => {
     return(
@@ -15,7 +16,9 @@ const Informationcard= (props) => {
     <p style={{fontSize: "17px"}} class="card-text">{props.content}</p>
     <p style={{fontSize: "14px"}} class="card-text"><i>{props.date}</i></p>
     <div class="button-fix pt-3">
-    <a href="#" class="btn btn-primary">Xem chi tiết</a>
+    
+    {localStorage.getItem("language") && (<NavLink to={props.link + props.id} class="btn btn-primary"> Xem chi tiết </NavLink>)}
+    {!localStorage.getItem("language") && (<NavLink to={props.link + props.id} class="btn btn-primary"> Details </NavLink>)}
   </div>
   </div>
   

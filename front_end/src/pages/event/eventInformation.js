@@ -26,7 +26,7 @@ const EventInform = () =>  {
   var num;
   var addDay;
     for (let i of listEvents){
-      if (i.ID === id){
+      if (i.ID.toString() === id){
           type = i.Type;
           name = i.EventName;
           organizer = i.Organizer;
