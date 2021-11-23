@@ -135,6 +135,22 @@ exports.getRepresentInfoWithID = function(id,callbackQuery){
         }
     })
 }
+
+//get list rating
+exports.getRatingList = function(callbackQuery){
+    connect();
+    connection.query("CALL GetInforRatingSheet()", function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
+}
+
+
 // Get Scholarship
 exports.getScholarship = function(callbackQuery){
     connect();
@@ -229,6 +245,79 @@ exports.updateAppointment= function(stud_id,app_date,app_time,caring_id,callback
      // var sql = `CALL MakeAppointment(${stud_id},${app_date},${app_time},${stu_problem},${cstaff_id})`;
      // var sql = `CALL MakeAppointment(1915450, '2021-11-05', '19:30:00', 'Tư vấn về kế hoạch học tập đại học', 'NV78374');`;
     connection.query(`CALL AcceptAppointment(?,?,?,?);`,[stud_id,app_date,app_time,caring_id],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+
+// add News
+exports.insertNews= function(topic,title,content,author,caringStaffID,callbackInsert){
+    connect();
+    connection.query(`CALL AddNews(?,?,?,?,?);`,[topic,title,content,author,caringStaffID],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+
+// add Events
+exports.insertEvent= function(type, eventname, organizer, place, participantmaxnum, stime, etime,caringStaffID,callbackInsert){
+    connect();
+    connection.query(`CALL AddEvent(?,?,?,?,?,?,?,?);`,[type, eventname, organizer, place, participantmaxnum, stime, etime,caringStaffID],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+// add Scholarship
+exports.insertScholarship= function(scope, value, name, sdate, edate, staffID,callbackInsert){
+    connect();
+    connection.query(`CALL AddScholar(?,?,?,?,?,?);`,[scope, value, name, sdate, edate,staffID],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+exports.insertScholarshipRequire= function(scholarID, srequire ,callbackInsert){
+    connect();
+    connection.query(`CALL AddScholRequire(?,?);`,[scholarID, srequire],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+// add Job
+exports.insertJob= function(company, jobname, phonenum, address, sdate, edate ,staffID,callbackInsert){
+    connect();
+    connection.query(`CALL AddJob(?,?,?,?,?,?,?);`,[company, jobname, phonenum, address, sdate, edate ,staffID],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+
+exports.insertJobRequire= function(jobID, jrequire, callbackInsert){
+    connect();
+    connection.query(`CALL AddJobRequire(?,?);`,[jobID, jrequire],function(err, results, fields){
         if(!err){
             callbackInsert(results);
         }

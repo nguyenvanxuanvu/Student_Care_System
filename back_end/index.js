@@ -290,4 +290,62 @@ app.get("/representInfo/", function(req, res){
         
     });
 });
+
+//get list rating
+
+app.get("/rating", function(req, res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    database.getRatingList(function(resultQuery){
+        
+        res.send(resultQuery);
+        
+    });
+});
+
+// add news
+app.post("/addNews", function(req,res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    console.log(req.body)
+    var topic = req.body.topic;
+    var title =req.body.title;
+    var content = req.body.content;
+    var author = req.body.author;
+    var caringStaffID = req.body.caringStaffID;
+    
+
+    
+    database.insertNews(topic,title,content,author,caringStaffID,function(resultQuery){
+        res.json(resultQuery)
+    })
+    
+})
+
+
+
+
+
+
+
 app.listen(3000)
