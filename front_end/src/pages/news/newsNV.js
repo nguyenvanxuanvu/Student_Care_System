@@ -21,8 +21,7 @@ const News = () => {
           <div class="pt-3 ps-5">
             {localStorage.getItem("language") && (<h3>Tin tức</h3>)}
             {!localStorage.getItem("language") && (<h3>News</h3>)}
-            
-            <a class="btn btn-outline-warning" href="/newsForm" role="button"> + Thêm tin tức</a>
+            <a class="btn btn-primary" href="/newsForm" role="button"> + Thêm tin tức</a>
 
             <div class="row pt-3 ps-2 pe-2">
               {listNews.map((comment, key) => {

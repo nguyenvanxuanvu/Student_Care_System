@@ -21,6 +21,9 @@ const Job = () => {
           <div class="pt-3 ps-5">
             {localStorage.getItem("language") && (<h3>Việc làm</h3>)}
             {!localStorage.getItem("language") && (<h3>Job</h3>)}
+
+            <a class="btn btn-warning" href="/jobform" role="button"> + Thêm việc làm</a>
+
             <div class="row pt-3 ps-2 pe-2">
               {listJob.map((comment, key) => {
                 return (

@@ -25,6 +25,11 @@ import UserInfo from './pages/user/userInfor';
 import RepreInfo from './pages/user/repreInfor';
 import Appointmentlist from './pages/appointment/appointmentlist';
 import Appointmentlist1 from './pages/appointment/appointmentlist1';
+import newsForm from './pages/news/addnews';
+import eventForm from './pages/event/addevent';
+import jobForm from './pages/job/addjob';
+import scholarForm from './pages/scholarship/addscholarship';
+
 function App() {
   const [auth, setAuth] = useState(false);
     useEffect(() => {
@@ -61,6 +66,12 @@ function App() {
         <Route exact path='/representative/:id' component={RepreInfo}/>
         <Route exact path='/appointmentlist' component={Appointmentlist}/>
         <Route exact path='/appointmentlist1' component={Appointmentlist1}/>
+
+        <Route exact path='/newsform' component={newsForm}/>
+        <Route exact path='/eventform' component={eventForm}/>
+        <Route exact path='/jobform' component={jobForm}/>
+        <Route exact path='/scholarform' component={scholarForm}/>
+
       </Switch>
       
     </Router>

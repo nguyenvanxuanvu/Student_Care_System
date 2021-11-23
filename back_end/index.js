@@ -332,20 +332,100 @@ app.post("/addNews", function(req,res){
     var title =req.body.title;
     var content = req.body.content;
     var author = req.body.author;
-    var caringStaffID = req.body.caringStaffID;
-    
+    var caringStaffID = req.body.caringStaffID;  
 
-    
     database.insertNews(topic,title,content,author,caringStaffID,function(resultQuery){
         res.json(resultQuery)
     })
     
 })
 
+// add event
+app.post("/addEvent", function(req,res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    console.log(req.body)
+    var type = req.body.type;
+    var eventname =req.body.eventname;
+    var organizer = req.body.organizer;
+    var place = req.body.place;
+    var participantmaxnum = req.body.participantmaxnum;  
+    var stime = req.body.stime;
+    var etime = req.body.etime;
+    var caringStaffID = req.body.caringStaffID;
 
+    database.insertEvent(type, eventname, organizer, place, participantmaxnum, stime, etime,caringStaffID ,function(resultQuery){
+        res.json(resultQuery)
+    })
+    
+})
 
+// add job
+app.post("/addJob", function(req,res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    console.log(req.body)
+    var company = req.body.company;
+    var jobname =req.body.jobname;
+    var phonenum = req.body.phonenum;
+    var address = req.body.address;
+    var sdate = req.body.sdate;
+    var edate = req.body.edate;
+    var staffID = req.body.staffID;
 
+    database.insertJob(company, jobname, phonenum, address, sdate, edate ,staffID ,function(resultQuery){
+        res.json(resultQuery)
+    })
+    
+})
 
+// add scholarship
+app.post("/addScholarship", function(req,res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    console.log(req.body)
+    var scope = req.body.scope;
+    var value =req.body.value;
+    var name = req.body.name;
+    var sdate = req.body.sdate;
+    var edate = req.body.edate;
+    var staffID = req.body.staffID;
+
+    database.insertScholarship(scope, value, name, sdate, edate,staffID ,function(resultQuery){
+        res.json(resultQuery)
+    })
+    
+})
 
 
 app.listen(3000)
