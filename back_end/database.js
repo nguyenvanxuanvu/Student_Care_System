@@ -134,6 +134,21 @@ exports.getStaffInfoWithID = function(id,callbackQuery){
         }
     })
 }
+// Get Affair Info
+exports.getAffairEmpInfoWithID = function(id,callbackQuery){
+    connect();
+    
+    var sql = `CALL Get_AffairEmp(?)`;
+    connection.query(sql,[id] ,function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
+}
 
 // Repre Info
 

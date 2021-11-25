@@ -34,6 +34,7 @@ import scholarForm from './pages/scholarship/addscholarship';
 import StaffInfo from './pages/user/staffInfor';
 import AddCall from './pages/call/addCall';
 import ListRating from './pages/rating/ListRating';
+import AffairInfo from './pages/user/affairInfor';
 function App() {
   const [auth, setAuth] = useState(false);
     useEffect(() => {
@@ -80,6 +81,8 @@ function App() {
       
         <Route exact path='/staffInfo/:id' component={StaffInfo}/>
         <Route exact path='/addCall' component={AddCall}/>
+        <Route exact path='/affairInfo/:id' component={AffairInfo}/>
+
       </Switch>
       
     </Router>

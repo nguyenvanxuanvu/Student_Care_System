@@ -413,6 +413,28 @@ app.get("/staffInfo/", function(req, res){
     });
 });
 
+app.get("/AffairInfo/", function(req, res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    var id = req.query.id
+     
+    database.getAffairEmpInfoWithID(id,function(resultQuery){
+        console.log(resultQuery)
+        res.send(resultQuery);
+        
+    });
+});
+
 // ng dai dien
 
 app.get("/representInfo/", function(req, res){
