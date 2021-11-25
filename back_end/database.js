@@ -136,6 +136,22 @@ exports.getRepresentInfoWithID = function(id,callbackQuery){
     })
 }
 
+// Get Staff Info
+exports.getStaffInfoWithID = function(id,callbackQuery){
+    connect();
+    
+    var sql = `CALL Get_Employee(?)`;
+    connection.query(sql,[id] ,function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
+}
+
 //get list rating
 exports.getRatingList = function(callbackQuery){
     connect();
@@ -318,6 +334,46 @@ exports.insertJob= function(company, jobname, phonenum, address, sdate, edate ,s
 exports.insertJobRequire= function(jobID, jrequire, callbackInsert){
     connect();
     connection.query(`CALL AddJobRequire(?,?);`,[jobID, jrequire],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+
+// get all call history
+exports.getCallHistory = function(callbackQuery){
+    connect();
+    connection.query("call GetCallHistory();", function(err, results, fields){
+        if(!err){
+            callbackQuery(results);
+
+        }
+        else{
+            console.log(err);
+        }
+    })
+}
+
+// insert call history
+exports.addCallHistory= function(StudentID, StaffID, Topic, Status, callbackInsert){
+    connect();
+    connection.query(`CALL InsertCallHis(?,?,?,?);`,[StudentID, StaffID, Topic, Status],function(err, results, fields){
+        if(!err){
+            callbackInsert(results);
+        }
+        else{
+            console.log(err)
+        }
+    } )
+}
+
+// update call status
+exports.updateCallHistory= function(CallID, Status, callbackInsert){
+    connect();
+    connection.query(`CALL UpdateCall(?,?);`,[CallID, Status],function(err, results, fields){
         if(!err){
             callbackInsert(results);
         }

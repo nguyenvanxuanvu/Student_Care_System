@@ -29,6 +29,8 @@ import newsForm from './pages/news/addnews';
 import eventForm from './pages/event/addevent';
 import jobForm from './pages/job/addjob';
 import scholarForm from './pages/scholarship/addscholarship';
+import StaffInfo from './pages/user/staffInfor';
+import addCall from './pages/call/addCall';
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -71,6 +73,10 @@ function App() {
         <Route exact path='/eventform' component={eventForm}/>
         <Route exact path='/jobform' component={jobForm}/>
         <Route exact path='/scholarform' component={scholarForm}/>
+
+        <Route exact path='/staffInfo/:id' component={StaffInfo}/>
+        <Route exact path='/addCall' component={addCall}/>
+
 
       </Switch>
       

@@ -267,9 +267,9 @@ app.get("/studentInfo/", function(req, res){
     });
 });
 
-// ng dai dien
+// get staff info
 
-app.get("/representInfo/", function(req, res){
+app.get("/staffInfo/", function(req, res){
     if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
         res.header('Access-Control-Allow-Origin', req.headers.origin);
         oneof = true;
@@ -284,7 +284,7 @@ app.get("/representInfo/", function(req, res){
     }
     var id = req.query.id
      
-    database.getRepresentInfoWithID(id,function(resultQuery){
+    database.getStaffInfoWithID(id,function(resultQuery){
         console.log(resultQuery)
         res.send(resultQuery);
         
@@ -426,6 +426,78 @@ app.post("/addScholarship", function(req,res){
     })
     
 })
+
+// get call history
+app.get("/callhistory", function(req, res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    database.getCallHistory(function(resultQuery){
+        
+        res.send(resultQuery);
+        
+    });
+});
+
+// insert call history
+app.post("/addCall", function(req,res){
+    if (req.headers.origin) { 
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    console.log(req.body)
+    var StudentID =req.body.StudentID;
+    var StaffID = req.body.StaffID;
+    var Topic = req.body.Topic;
+    var Status = false;
+        
+    database.addCallHistory(StudentID, StaffID, Topic, Status,function(resultQuery){
+        res.json(resultQuery)
+    })
+    
+})
+
+
+app.post("/updateCall", function(req,res){
+    if (req.headers.origin) { 
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    console.log(req.body)
+    var CallID = req.body.CallID;
+    var Status =req.body.Status;
+    
+    database.updateAppointment(CallID, Status,function(resultQuery){
+        res.json(resultQuery)
+    })
+    
+})
+
 
 
 app.listen(3000)

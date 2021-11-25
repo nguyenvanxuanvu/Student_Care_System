@@ -3,6 +3,7 @@ import logo from "../../images/logo.png";
 import "./Navbar.css";
 import {BsCalendarCheck} from 'react-icons/all';
 import {BiMessageDetail} from 'react-icons/all';
+import {FaPhoneSquareAlt} from 'react-icons/all';
 import { NavDropdown } from "react-bootstrap";
 import { IoCall, GiPositionMarker, AiFillCaretDown } from "react-icons/all";
 import {
@@ -20,6 +21,7 @@ function logOut() {
     localStorage.removeItem("type1");
     localStorage.removeItem("type2");
     localStorage.removeItem("userid");
+    localStorage.removeItem("callhistory");
     setAuth(false);
   }
   return (
@@ -77,12 +79,14 @@ function logOut() {
       
       <div class="row">
         <div class="col-auto pt-2">
-          
       {localStorage.getItem("type1") && (<NavLink to='/appointmentlist' class="iconnn  pe-1">{<BsCalendarCheck size={25}/>}</NavLink>)}
       {localStorage.getItem("type2") && (<NavLink to='/appointmentlist1' class="iconnn  pe-1">{<BsCalendarCheck size={25}/>}</NavLink>)}
       </div>
       <div class="col pt-2">
       <NavLink to='/login' class="iconnn  pe-1">{<BiMessageDetail size={32}/>}</NavLink>
+      </div>
+      <div class="col pt-2">
+      <NavLink to='/addCall' class="iconnn  pe-1">{<FaPhoneSquareAlt size={28}/>}</NavLink>
       </div>
       <div class="col">
         <div class="nadropdown">
