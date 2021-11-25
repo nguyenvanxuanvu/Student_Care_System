@@ -54,11 +54,11 @@ const JobInform = () =>  {
                     
                 </div>
                 <div>
-                  <h4>Đơn vị tuyển dụng</h4>
+                  <h4>{localStorage.getItem("language")? "Đơn vị tuyển dụng":"Recruitment agency"}</h4>
                   <p>{company}</p>
                 </div>
                 <div>
-                  <h4>Yêu cầu công việc</h4>
+                  <h4>{localStorage.getItem("language")? "Yêu cầu công việc":"Job requirements"}</h4>
                   <div>
                   {listJobRequire.map((comment, key) => {
                   return (
@@ -72,17 +72,17 @@ const JobInform = () =>  {
                 </div>
                 </div>
                 <div>
-                <h4>Thông tin liên lạc</h4>
+                <h4>{localStorage.getItem("language")? "Thông tin liên lạc":"Contact information"}</h4>
                   <ul>
-                    <li><strong>Địa chỉ</strong><p>{address}</p></li>
-                    <li><strong>Số điện thoại</strong><p>{phonenum}</p></li>
+                    <li><strong>{localStorage.getItem("language")? "Địa chỉ":"Address"}</strong><p>{address}</p></li>
+                    <li><strong>{localStorage.getItem("language")? "Số điện thoại":"Phone number"}</strong><p>{phonenum}</p></li>
 
                   </ul>
                 </div>
                 <div>
-                  <h4>Thời gian</h4>
+                  <h4>{localStorage.getItem("language")? "Thời gian tuyển dụng":"Recruitment time"}</h4>
                   <p><strong>{Moment(startTime).utcOffset('+07:00')
-                        .format("DD/MM/YYYY")}</strong> đến <strong>{Moment(endTime).utcOffset('+07:00')
+                        .format("DD/MM/YYYY")}</strong> {localStorage.getItem("language")? "đến":"to"} <strong>{Moment(endTime).utcOffset('+07:00')
                   .format("DD/MM/YYYY")}</strong></p>
                 </div>
             </div>

@@ -6,7 +6,9 @@ import {BsCalendarCheck} from 'react-icons/all';
 import {BiMessageDetail} from 'react-icons/all';
 import { NavDropdown } from "react-bootstrap";
 import { IoCall, GiPositionMarker, AiFillCaretDown } from "react-icons/all";
+
 // import { NavLink } from "react-router-dom";
+
 import {
   Nav,
   NavLink,
@@ -74,12 +76,12 @@ const Navbar = ({ auth, setAuth }) => {
           <div class="ps-5"></div>
           <div class="ps-5"></div>
           
-            {contact && (<p style={{ color: "rgba(255, 255, 255, 1)" }}>Ngôn ngữ</p>)}
+             {contact && (<p style={{ color: "rgba(255, 255, 255, 1)" }}>Ngôn ngữ</p>)}
             {!contact && (<p style={{ color: "rgba(255, 255, 255, 1)" }}>Language</p>)}
             <div class = "ps-2"></div>
+             
             
-            
-            { window.location.pathname==="/home"  && (<NavLink to="/homeAll" activeStyle>
+             { window.location.pathname==="/home"  && (<NavLink to="/homeAll" activeStyle>
             <p  onClick={
                     ChangLanguageVI
                   } style={{fontWeight: "600", color: "red" }}>VI</p>
@@ -87,10 +89,10 @@ const Navbar = ({ auth, setAuth }) => {
             <p  onClick=
             {ChangLanguageEN} style={{ color: "red" ,fontWeight: "600"}}>EN</p>
             
-            </NavLink> )}
+            </NavLink> )} 
             
             
-            { window.location.pathname !=="/home" && (<NavLink to="/home" activeStyle>
+ { window.location.pathname !=="/home" && (<NavLink to="/home" activeStyle>
             <p  onClick={
                     ChangLanguageVI
                   } style={{fontWeight: "600", color: "red" }}>VI</p>
@@ -98,7 +100,7 @@ const Navbar = ({ auth, setAuth }) => {
             <p  onClick=
             {ChangLanguageEN} style={{ color: "red" ,fontWeight: "600"}}>EN</p>
             
-            </NavLink> )}
+            </NavLink> )} 
 
 
                 

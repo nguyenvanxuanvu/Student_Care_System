@@ -136,7 +136,50 @@ app.get("/appointment", function(req, res){
     database.getAppointment(function(resultQuery){
         
         res.send(resultQuery);
+       
+    });
+});
+
+app.get("/getmessage", function(req, res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    database.getMessage(function(resultQuery){
         
+        res.send(resultQuery);
+        console.log(resultQuery)
+    });
+});
+
+
+// Get Replies
+
+app.get("/getreplies", function(req, res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    database.getReplies(function(resultQuery){
+        
+        res.send(resultQuery);
+        console.log(resultQuery)
     });
 });
 
@@ -217,6 +260,85 @@ app.post("/addAppointment", function(req,res){
     
 })
 
+// InsertAppointment
+app.post("/sendMessage", function(req,res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    console.log(req.body)
+    var subject = req.body.Subject;
+    var content =req.body.Content;
+    var stu_id = req.body.StudentID;
+    var time = req.body.Time;
+   
+    
+
+    
+    database.sendMessage(subject,content,stu_id, time,function(resultQuery){
+        res.json(resultQuery)
+    })
+    
+})
+
+app.post("/sendReplies", function(req,res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    console.log(req.body)
+    var caringid = req.body.CaringID;
+    var messageid =req.body.MessageID;
+    var content = req.body.Content;
+    
+   
+    
+
+    
+    database.sendReplies(caringid,messageid,content,function(resultQuery){
+        res.json(resultQuery)
+    })
+    
+})
+
+app.post("/createrating", function(req,res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    console.log(req.body)
+    var content = req.body.Content;
+    var id =req.body.ID;
+    var date = req.body.Date;
+    database.CreateRating(content,id,date,function(resultQuery){
+        res.json(resultQuery)
+    })
+    
+})
 
 app.post("/updateAppointment", function(req,res){
     if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
@@ -233,7 +355,7 @@ app.post("/updateAppointment", function(req,res){
     }
     console.log(req.body)
     var stud_id = req.body.StudentID;
-    var app_date =req.body.Date;
+    var app_date =new Date(req.body.Date).getDate();
     var app_time = req.body.Time;
     var caring_id = req.body.CaringID;
     
@@ -291,6 +413,31 @@ app.get("/staffInfo/", function(req, res){
     });
 });
 
+// ng dai dien
+
+app.get("/representInfo/", function(req, res){
+    if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-method']) {
+        res.header('Access-Control-Allow-Methods', req.headers['access-control-request-method']);
+        oneof = true;
+    }
+    if (req.headers['access-control-request-headers']) {
+        res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
+        oneof = true;
+    }
+    var id = req.query.id
+     
+    database.getRepresentInfoWithID(id,function(resultQuery){
+        console.log(resultQuery)
+        res.send(resultQuery);
+        
+    });
+});
+
+
 //get list rating
 
 app.get("/rating", function(req, res){
@@ -313,6 +460,7 @@ app.get("/rating", function(req, res){
     });
 });
 
+
 // add news
 app.post("/addNews", function(req,res){
     if (req.headers.origin) { //req.headers.origin.match(/whateverDomainYouWantToWhitelist/g) ) {
@@ -333,8 +481,8 @@ app.post("/addNews", function(req,res){
     var content = req.body.content;
     var author = req.body.author;
     var caringStaffID = req.body.caringStaffID;  
-
-    database.insertNews(topic,title,content,author,caringStaffID,function(resultQuery){
+    var addDay = req.body.addDay;
+    database.insertNews(topic,title,content,author,caringStaffID,addDay,function(resultQuery){
         res.json(resultQuery)
     })
     
@@ -363,8 +511,8 @@ app.post("/addEvent", function(req,res){
     var stime = req.body.stime;
     var etime = req.body.etime;
     var caringStaffID = req.body.caringStaffID;
-
-    database.insertEvent(type, eventname, organizer, place, participantmaxnum, stime, etime,caringStaffID ,function(resultQuery){
+    var addDay = req.body.addDay;
+    database.insertEvent(type, eventname, organizer, place, participantmaxnum, stime, etime,caringStaffID,addDay ,function(resultQuery){
         res.json(resultQuery)
     })
     
@@ -392,8 +540,9 @@ app.post("/addJob", function(req,res){
     var sdate = req.body.sdate;
     var edate = req.body.edate;
     var staffID = req.body.staffID;
+    var addDay =req.body.addDay;
 
-    database.insertJob(company, jobname, phonenum, address, sdate, edate ,staffID ,function(resultQuery){
+    database.insertJob(company, jobname, phonenum, address, sdate, edate ,staffID,addDay ,function(resultQuery){
         res.json(resultQuery)
     })
     
@@ -420,8 +569,9 @@ app.post("/addScholarship", function(req,res){
     var sdate = req.body.sdate;
     var edate = req.body.edate;
     var staffID = req.body.staffID;
+    var addDay = req.body.addDay;
 
-    database.insertScholarship(scope, value, name, sdate, edate,staffID ,function(resultQuery){
+    database.insertScholarship(scope, value, name, sdate, edate,staffID,addDay,function(resultQuery){
         res.json(resultQuery)
     })
     
@@ -441,8 +591,9 @@ app.get("/callhistory", function(req, res){
         res.header('Access-Control-Allow-Headers', req.headers['access-control-request-headers']);
         oneof = true;
     }
+
     database.getCallHistory(function(resultQuery){
-        
+        console.log(resultQuery)
         res.send(resultQuery);
         
     });
@@ -466,7 +617,7 @@ app.post("/addCall", function(req,res){
     var StudentID =req.body.StudentID;
     var StaffID = req.body.StaffID;
     var Topic = req.body.Topic;
-    var Status = false;
+    var Status = req.body.Status;
         
     database.addCallHistory(StudentID, StaffID, Topic, Status,function(resultQuery){
         res.json(resultQuery)
@@ -492,12 +643,11 @@ app.post("/updateCall", function(req,res){
     var CallID = req.body.CallID;
     var Status =req.body.Status;
     
-    database.updateAppointment(CallID, Status,function(resultQuery){
+    database.updateCallHistory(CallID, Status,function(resultQuery){
         res.json(resultQuery)
     })
     
 })
-
 
 
 app.listen(3000)

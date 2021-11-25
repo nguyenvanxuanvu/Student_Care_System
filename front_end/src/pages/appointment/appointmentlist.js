@@ -20,24 +20,48 @@ const Appointmentlist = () => {
        if(x===0) return "Chưa được nhận"
        else return "Đã được nhận"
    }
-  
+   const formatDate = (date) => {
+    var ans = [];
+    ans = date.split('/');
+    return (ans[1]+'-'+ans[0]+'-'+ans[2]).toString();
+}
     
   return (
     <div class="row w-100">
       <div class="col-9">
+        
         <div className="mainscroll pt-3 pb-3 ps-3 pe-3">
+        
           <div class="pt-3 ps-5">
-            
+          <div class="row">
+            <div class="col">
+          {localStorage.getItem("language") && (<h3>Cuộc hẹn của tôi</h3>)}
+          {!localStorage.getItem("language") && (<h3>My appointment</h3>)}
+          </div>
+          <div class="col ps-5">
+          {localStorage.getItem("language") && (<NavLink to="/appointmentform" class="btn btn-primary"> Tạo cuộc hẹn mới</NavLink>)}
+          {!localStorage.getItem("language") && (<NavLink to="/appointmentform" class="btn btn-primary"> Make new appointment</NavLink>)}
+          </div>
+          </div>
         
           <table class="table">
-                <thead>
+          {localStorage.getItem("language") && ( <thead>
                     <tr>
                     <th scope="col">Ngày</th>
                     <th scope="col">Giờ</th>
                     <th scope="col">Vấn đề</th>
                     <th scope="col">Trạng thái</th>
                     </tr>
-                </thead>
+                </thead>)}
+
+                {!localStorage.getItem("language") && ( <thead>
+                    <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Problem</th>
+                    <th scope="col">Status</th>
+                    </tr>
+                </thead>)}
                 <tbody>
                 {listAppointments.sort((a,b)=>{
                 return new Date(b.Date) - new Date(a.Date)})
@@ -46,10 +70,11 @@ const Appointmentlist = () => {
                         return(
                             <tr>
                                
-                                <td>{new Date(appoint.Date).toLocaleDateString()}</td>
+                                <td>{formatDate(new Date(appoint.Date).toLocaleDateString())}</td>
                                 <td>{appoint.Time}</td>
                                 <td>{appoint.Problem}</td>
-                                <td>{setStatus(appoint.Status)}</td>
+                               {setStatus(appoint.Status)==="Đã được nhận" && ( <td style={{color:"#26e97e "}}>{setStatus(appoint.Status)}</td>)}
+                               {setStatus(appoint.Status)!=="Đã được nhận" && ( <td style={{fontWeight:"bold"}}>{setStatus(appoint.Status)}</td>)}
                             </tr>
                         )
                     })}

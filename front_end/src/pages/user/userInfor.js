@@ -38,23 +38,23 @@ const UserInfo = () => {
       <div className="col-9 instruct ps-5 pb-5">
         
         <div className="pt-5 ps-5 pe-5 pb-5">
-        <h3 className="pt-3">THÔNG TIN SINH VIÊN</h3>
+        <h3 className="pt-3">{localStorage.getItem("language")?"THÔNG TIN SINH VIÊN":"STUDENT INFORMATION"}</h3>
         <div class="card">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Họ và tên:
+                <li class="list-group-item">{localStorage.getItem("language")?"Họ và tên:":"Full name:"}
                     <p>{Name}</p>
                 </li>
-                <li class="list-group-item">MSSV:
+                <li class="list-group-item">{localStorage.getItem("language")?"MSSV:":"ID:"}
                     <p>{id}</p>
                 </li>
-                <li class="list-group-item">Ngày sinh:
+                <li class="list-group-item">{localStorage.getItem("language")?"Ngày sinh:":"Date of birth:"}
                     <p>{Moment(DateOfBirth).utcOffset('+07:00')
                   .format('DD/MM/YYYY')}</p>
                 </li>
-                <li class="list-group-item">Số điện thoại:
+                <li class="list-group-item">{localStorage.getItem("language")?"Số điện thoại:":"Phone number:"}
                     <p>{PhoneNum}</p>
                 </li>
-                <li class="list-group-item">Địa chỉ:
+                <li class="list-group-item">{localStorage.getItem("language")?"Địa chỉ:":"Address:"}
                     <p>{Address}</p>
                 </li>
                 <li class="list-group-item">Email:

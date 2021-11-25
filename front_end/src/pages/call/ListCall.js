@@ -6,7 +6,7 @@ import Moment from 'moment'
 import { NavLink } from 'react-router-dom';
 import event from '../../images/event.jpg'
 import axios from "axios";
-
+import CallCard from "./CallCard";
 import React, { Component } from 'react';
 
 const ListCall = () => {
@@ -20,14 +20,7 @@ const ListCall = () => {
   }, []);
    
    
-   const onHandleChange0 = (call) =>{
-    var postData = {
-        CallID: call.CallID,
-        Status: 1        
-    };
-    axios.post('/updateCall', postData)    
 
-   };
 
 
 
@@ -44,20 +37,12 @@ const ListCall = () => {
                 </thead>
                 <tbody>
                 {listCalls.sort((a,b)=>{
-                  return (a.Status - b.Status)
+                  return (new Date(b.Time) - new Date(a.Time))
                 })
-                .map((call,idx) => {
+                .map((call) => {
                         return(
-                            <tr>
-                                <td>{call.StudentID}</td>
-                                <td>{Moment(call.Time).utcOffset('+07:00').format("DD/MM/YYYY HH:mm:ss")}</td>
-                                <td>{call.Topic}</td>
-
-                                {call.Status === 0 && (<td>{<button className="btn btn-outline-danger" onClick={onHandleChange0(call)}>{localStorage.getItem("language")?"Chưa giải quyết":"Unresolved"}</button>}</td>)}
-                                {call.Status === 1 && (<td>{<button className="btn btn-outline-success">{localStorage.getItem("language")?"Đã giải quyết":"Resolved"}</button>}</td>)}
-                               
-                            </tr>
-                        )
+                            <CallCard CallID = {call.CallID} Status = {call.Status} StudentID = {call.StudentID} Time = {call.Time} Problem = {call.Topic} />
+                        );
                     })}
                 </tbody>
             </table>

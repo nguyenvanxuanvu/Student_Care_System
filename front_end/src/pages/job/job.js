@@ -22,10 +22,10 @@ const Job = () => {
             {localStorage.getItem("language") && (<h3>Việc làm</h3>)}
             {!localStorage.getItem("language") && (<h3>Job</h3>)}
 
-            <a class="btn btn-warning" href="/jobform" role="button"> + Thêm việc làm</a>
+            {localStorage.getItem("type3") &&  (<a class="btn btn-warning" href="/jobform" role="button"> {localStorage.getItem("language")?"+ Thêm việc làm":"+ Add job"}</a>)}
 
             <div class="row pt-3 ps-2 pe-2">
-              {listJob.map((comment, key) => {
+              {listJob.sort((a,b)=>{return new Date(b.AddDay) - new Date(a.AddDay)}).map((comment, key) => {
                 return (
                   <div class="col-lg-6  pt-5">
                     <InforCard

@@ -38,7 +38,7 @@ const StaffInfo = () => {
     }
   return (
     <div className="row w-100">
-    {localStorage.getItem("language")?"aa":"bbb"}
+    
       <div className="col-9 instruct ps-5 pb-5">
         
         <div className="pt-5 ps-5 pe-5 pb-5">

@@ -22,10 +22,10 @@ const News = () => {
             {localStorage.getItem("language") && (<h3>Tin tức</h3>)}
             {!localStorage.getItem("language") && (<h3>News</h3>)}
             
-            <a class="btn btn-outline-warning" href="/newsForm" role="button"> + Thêm tin tức</a>
+            {localStorage.getItem("type2") && ( <a class="btn btn-outline-warning" href="/newsForm" role="button">{localStorage.getItem("language")?"+ Thêm tin tức":"+ Add news"}</a>)}
 
             <div class="row pt-3 ps-2 pe-2">
-              {listNews.map((comment, key) => {
+              {listNews.sort((a,b)=>{return new Date(b.AddDay) - new Date(a.AddDay)}).map((comment, key) => {
                 return (
                   <div class="col-lg-6  pt-5">
                     <InforCard

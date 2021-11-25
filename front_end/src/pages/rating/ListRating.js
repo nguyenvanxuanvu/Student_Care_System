@@ -14,16 +14,18 @@ const ListRating = () => {
     }, []);
     return(
         <div class="row w-100">
-        <div class="col-9">
-        <div className="container mt-30">
+        <div class="col-9 ps-5">
+        <div className="mainscroll pt-3 pb-3 ps-3 pe-3">
+        
             <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-10 col-lg-10">
                     <div className="panel panel-primary">
                         <div className="panel-heading">
-                            <h3 className="panel-title">Đánh giá của sinh viên</h3><br/>
+                            <h3 className="panel-title">{localStorage.getItem("language")?"Đánh giá của sinh viên":"Student 's rating sheet"}</h3><br/>
                         </div>
                         <div className="panel-body">
-                        {listRatings.map((comment, key) => {
+                        {listRatings.sort((a,b)=>{
+                return new Date(b.CreateDate) - new Date(a.CreateDate)}).map((comment, key) => {
                             return (
                                 <div class="list-group">
                                     <a href="#" class="list-group-item list-group-item-action">
@@ -46,6 +48,7 @@ const ListRating = () => {
         <div class="col-2">
         <Righthome />
       </div>
+       
         </div>
         )
 };

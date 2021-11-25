@@ -25,10 +25,11 @@ const Event = () => {
             {localStorage.getItem('language') && (<h3>Sự kiện</h3>)}
             {!localStorage.getItem('language') && (<h3>Event</h3>)}
 
-            <a class="btn btn-warning" href="/eventform" role="button"> + Thêm sự kiện</a>
+            {localStorage.getItem('language') && localStorage.getItem("type2") && (<a class="btn btn-warning" href="/eventform" role="button"> + Thêm sự kiện</a>)}
+            {!localStorage.getItem('language') && localStorage.getItem("type2") && (<a class="btn btn-warning" href="/eventform" role="button"> + Add event</a>)}
 
           <div class="row pt-3 ps-2 pe-2">
-          {listEvents.map((comment, key) => {
+          {listEvents.sort((a,b)=>{return new Date(b.AddDay) - new Date(a.AddDay)}).map((comment, key) => {
             return (
               
                 <div class="col-lg-6  pt-5">

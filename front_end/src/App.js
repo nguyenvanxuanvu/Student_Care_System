@@ -25,19 +25,21 @@ import UserInfo from './pages/user/userInfor';
 import RepreInfo from './pages/user/repreInfor';
 import Appointmentlist from './pages/appointment/appointmentlist';
 import Appointmentlist1 from './pages/appointment/appointmentlist1';
+import Message from './pages/message/message';
+import Replies from './pages/message/replies';
 import newsForm from './pages/news/addnews';
 import eventForm from './pages/event/addevent';
 import jobForm from './pages/job/addjob';
 import scholarForm from './pages/scholarship/addscholarship';
 import StaffInfo from './pages/user/staffInfor';
-import addCall from './pages/call/addCall';
-
+import AddCall from './pages/call/addCall';
+import ListRating from './pages/rating/ListRating';
 function App() {
   const [auth, setAuth] = useState(false);
     useEffect(() => {
        localStorage.setItem("language", "VI");
-        const EMAIL = localStorage.getItem("email");
-        if(EMAIL) {
+        const USER = localStorage.getItem("userid");
+        if(USER) {
             setAuth(true);
         }
     }, [])
@@ -58,26 +60,26 @@ function App() {
         <Route exact path='/job' component={Job} />
         <Route exact path='/job/:id' component={JobInform} />
         <Route exact path='/news' component={News} />
-        <Route exact path='/news' component={News} />
+        
         <Route exact path='/news/:id' component={NewsInform} />
         <Route exact path='/signin' component={SignIn} />
-        <Route exact path='/appointmentform' component={AppointmentForm} />
-        <Route exact path='/ratingform' component={RatingForm} />
-        <Route exact path='/addEvent' component={EventForm} />
-        <Route exact path='/user/:id' component={UserInfo}/>
-        <Route exact path='/representative/:id' component={RepreInfo}/>
-        <Route exact path='/appointmentlist' component={Appointmentlist}/>
-        <Route exact path='/appointmentlist1' component={Appointmentlist1}/>
-
-        <Route exact path='/newsform' component={newsForm}/>
-        <Route exact path='/eventform' component={eventForm}/>
+        <Route exact path='/appointmentform' render={props => auth ? <AppointmentForm/> : <Login auth={auth} setAuth={setAuth}/>} />
+        <Route exact path='/ratingform' render={props => auth ? <RatingForm/> : <Login auth={auth} setAuth={setAuth}/>} />
+        <Route exact path='/listrating' render={props => auth ? <ListRating/> : <Login auth={auth} setAuth={setAuth}/>} />
+        <Route exact path='/addEvent' component= {EventForm}/>
+        <Route exact path='/user/:id' render={props => auth ? <UserInfo/> : <Login auth={auth} setAuth={setAuth}/>}/>
+        <Route exact path='/representative/:id' render={props => auth ? <RepreInfo/> : <Login auth={auth} setAuth={setAuth}/>}/>
+        <Route exact path='/appointmentlist' render={props => auth ? <Appointmentlist/> : <Login auth={auth} setAuth={setAuth}/>}/>
+        <Route exact path='/appointmentlist1' render={props => auth ? <Appointmentlist1/> : <Login auth={auth} setAuth={setAuth}/>}/>
+        <Route exact path='/message' render={props => auth ? <Message/> : <Login auth={auth} setAuth={setAuth}/>}/>
+        <Route exact path='/replies' render={props => auth ? <Replies/> : <Login auth={auth} setAuth={setAuth}/>}/>
+        <Route exact path='/newsform' component= {newsForm}/>
+        <Route exact path='/eventform' component= {eventForm}/>
         <Route exact path='/jobform' component={jobForm}/>
         <Route exact path='/scholarform' component={scholarForm}/>
-
+      
         <Route exact path='/staffInfo/:id' component={StaffInfo}/>
-        <Route exact path='/addCall' component={addCall}/>
-
-
+        <Route exact path='/addCall' component={AddCall}/>
       </Switch>
       
     </Router>

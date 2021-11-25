@@ -54,6 +54,7 @@ class eventForm extends Component{
                 if(!this.isValidDate()){
                     alert('Ngày bắt đầu phải nhỏ hơn ngày kết thúc')
                 }
+                let id = localStorage.getItem("userid")
                     var postData = {
                         type: this.state.type,
                         eventname: this.state.eventname,
@@ -62,7 +63,8 @@ class eventForm extends Component{
                         participantmaxnum: this.state.participantmaxnum,
                         stime: this.state.sdate,
                         etime: this.state.edate,
-                        caringStaffID: 'NV10983'
+                        caringStaffID: id,
+                        addDay: this.handleDate(new Date().toLocaleDateString())
                         
                     };
                     axios.post('/addEvent', postData)
@@ -84,31 +86,31 @@ class eventForm extends Component{
     return (
         <div class="row w-100">
       <div class="col-9">
-        <div className="container mt-30">
-            <div className="row">
+      <div className="mainscroll pt-3 pb-3 ps-3 pe-3">
+            <div className="row ps-5">
                 <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <div className="panel panel-primary">
                         <div className="panel-heading">
                             
                             {/* <h3 className="panel-title">{this.state.appointdate}</h3> */}
-                            <h3 className="panel-title">Thêm sự kiện</h3>
-                        </div>
+                            <h3 className="panel-title">{localStorage.getItem("language")?"Thêm sự kiện":"Add event"}</h3>
+                         </div>
                         <div className="panel-body">
 
                         <form onSubmit={ this.onHandleSubmit }>
                             <div>
-                            <label>Loại sự kiện: </label>
+                            <label>{localStorage.getItem("language")?"Loại sự kiện":"Event Type"}: </label>
                             <select className="form-select" aria-label="Default select example"
                                 name="type"
                                 onChange={(event) => this.setState({type : event.target.value})} 
                             >
-                                <option value="Hội thảo" selected>Hội thảo</option>
-                                <option value="Ngoại khóa">Ngoại khóa</option>
-                                <option value="Học thuật">Học thuật</option>
+                                <option value="Hội thảo" selected>{localStorage.getItem("language")?"Hội thảo":"Seminor"}</option>
+                                <option value="Ngoại khóa">{localStorage.getItem("language")?"Ngoại khóa":"Extracurricular"}</option>
+                                <option value="Học thuật">{localStorage.getItem("language")?"Học thuật":"Academic"}</option>
                                 </select>
                             </div> <br/>
                             <div className="form-group">
-                                <label>Tên sự kiện: </label>
+                                <label>{localStorage.getItem("language")?"Tên sự kiện:":"Event name:"} </label>
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -118,7 +120,7 @@ class eventForm extends Component{
                             </div><br/>
                             
                             <div className="form-group">
-                                <label>Người tổ chức: </label>
+                                <label>{localStorage.getItem("language")?"Người tổ chức:":"Organizer"} </label>
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -128,7 +130,7 @@ class eventForm extends Component{
                             </div><br/>
                             
                             <div className="form-group">
-                                <label>Địa điểm: </label>
+                                <label>{localStorage.getItem("language")?"Địa điểm:":"Place"} </label>
                                 <textarea
                                     className="form-control"
                                     rows="3"
@@ -138,7 +140,7 @@ class eventForm extends Component{
                             </div><br/>
                             
                             <div className="form-group">
-                                <label>Số lượng tối đa: </label>
+                                <label>{localStorage.getItem("language")?"Số lượng tối đa:":"Maximum quantity:"} </label>
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -147,17 +149,17 @@ class eventForm extends Component{
                                 />
                             </div><br/>
                             <div className="form-group">
-                                <label for="exampleDate" class="form-label">Ngày bắt đầu</label>
+                                <label for="exampleDate" class="form-label">{localStorage.getItem("language")?"Ngày bắt đầu":"Start date"}</label>
                                 <input type="date" class="form-control" id="sdate"
                                 name="appointdate" onChange={(event) => this.setState({sdate : event.target.value})} />
                             </div><br/>
                             <div className="form-group">
-                                <label for="exampleDate" class="form-label">Ngày kết thúc</label>
+                                <label for="exampleDate" class="form-label">{localStorage.getItem("language")?"Ngày kết thúc":"End date"}</label>
                                 <input type="date" class="form-control" id="edate"
                                 name="appointdate" onChange={(event) => this.setState({edate : event.target.value})} />
                             </div><br/>
 
-                            <button type="submit" className="btn btn-primary">Thêm</button>
+                            <button type="submit" className="btn btn-primary">{localStorage.getItem("language")?"Thêm":"Add"}</button>
 
                         </form>
 

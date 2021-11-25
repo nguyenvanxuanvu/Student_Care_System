@@ -97,29 +97,30 @@ const Abovehome = () => {
               We are always ready to listen to any contributions from you...
               </p>)}
               <div class="button_center">
-                {/* {
-              localStorage.getItem("userName") &&  <NavLink to={"/ratingform"} class="btn btn-primary align-items-center">
-              Đánh giá
-              </NavLink>
-                }
-                {
-                  !localStorage.getItem("userName") && 
-                } */}
-                <div class="btn btn-primary align-items-center"
-                  onClick={() => {
-                    if(!localStorage.getItem("userName"))
-                    {localStorage.getItem("language") && (alert.show('Cần đăng nhập để thực hiện đánh giá'))}
-                    {!localStorage.getItem("language") && (alert.show('Need to login to make a review'))}
-                  
-                    
-                  }}
+              {localStorage.getItem("type1") && localStorage.getItem("language") && ( <NavLink
+                  to={"/ratingform"}
+                  class="btn btn-primary align-items-center"
                 >
-                
-                   {localStorage.getItem("type1") && localStorage.getItem("language") && ("Đánh giá")}
-                   {localStorage.getItem("type2") && localStorage.getItem("language") && ("Xem đánh giá của sinh viên")}
-
-                    {!localStorage.getItem("language") && ("Evaluate")}
-                 
+                  Đánh giá
+                </NavLink>)}
+                {localStorage.getItem("type1") && !localStorage.getItem("language") && ( <NavLink
+                  to={"/appointmentform"}
+                  class="btn btn-primary align-items-center"
+                >
+                  Rating
+                </NavLink>)}
+                {localStorage.getItem("type2") && localStorage.getItem("language") && ( <NavLink
+                  to={"/listrating"}
+                  class="btn btn-primary align-items-center"
+                >
+                  Đánh giá của sinh viên
+                </NavLink>)}
+                {localStorage.getItem("type2") && !localStorage.getItem("language") && ( <NavLink
+                  to={"/appointmentlist1"}
+                  class="btn btn-primary align-items-center"
+                >
+                  Student 's rating
+                </NavLink>)}
                 
                  </div>
               </div>
@@ -127,7 +128,7 @@ const Abovehome = () => {
           </div>
         </div>
       </div>
-    </div>
+  
   );
 };
 

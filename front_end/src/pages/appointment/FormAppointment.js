@@ -73,13 +73,15 @@ class AppointmentForm extends Component{
                         <div className="panel-heading">
                             
                             {/* <h3 className="panel-title">{this.state.appointdate}</h3> */}
-                            <h3 className="panel-title">Đặt lịch hẹn mới</h3>
+                            {localStorage.getItem("language") && (<h3 className="panel-title">Đặt lịch hẹn mới</h3>)}
+                            {!localStorage.getItem("language") && (<h3 className="panel-title">Make new appointment</h3>)}
                         </div>
                         <div className="panel-body">
 
                         <form onSubmit={ this.onHandleSubmit }>
                             <div className="form-group">
-                                <label>Họ tên: </label>
+                            {localStorage.getItem("language") && (<label>Họ tên: </label>)}
+                            {!localStorage.getItem("language") && (<label>Full name: </label>)}
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -89,7 +91,8 @@ class AppointmentForm extends Component{
                             </div><br/>
                             
                             <div className="form-group">
-                                <label>MSSV: </label>
+                            {localStorage.getItem("language") && (<label>MSSV: </label>)}
+                            {!localStorage.getItem("language") && (<label>ID: </label>)}
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -99,7 +102,8 @@ class AppointmentForm extends Component{
                             </div><br/>
                             
                             <div className="form-group">
-                                <label>Vấn đề cần tư vấn: </label>
+                            {localStorage.getItem("language") && (<label>Vấn đề cần tư vấn: </label>)}
+                            {!localStorage.getItem("language") && (<label>Problem: </label>)}
                                 <textarea
                                     className="form-control"
                                     rows="3"
@@ -108,17 +112,17 @@ class AppointmentForm extends Component{
                                 ></textarea>
                             </div><br/>
                             <div className="form-group">
-                                <label for="exampleDate" class="form-label">Ngày hẹn</label>
+                                <label for="exampleDate" class="form-label">{localStorage.getItem("language")? "Ngày hẹn": "Date"}</label>
                                 <input type="date" class="form-control" id="exampleDate"
                                 name="appointdate" onChange={(event) => this.setState({appointdate : event.target.value})} />
                             </div><br/>
                             <div className="form-group">
-                                <label for="exampleTime" class="form-label">Giờ hẹn</label>
+                                <label for="exampleTime" class="form-label">{localStorage.getItem("language")?"Giờ hẹn":"Time"}</label>
                                 <input type="time" class="form-control" id="exampleTime"
                                 name="appointtime" onChange={(event) => this.setState({appointhour : event.target.value})} />
                             </div><br/>
 
-                            <button type="submit" className="btn btn-primary">Gửi</button>
+                            <button type="submit" className="btn btn-primary">{localStorage.getItem("language")?"Gửi":"Send"}</button>
 
                         </form>
 

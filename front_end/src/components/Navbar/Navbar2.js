@@ -6,6 +6,7 @@ import {BiMessageDetail} from 'react-icons/all';
 import {FaPhoneSquareAlt} from 'react-icons/all';
 import { NavDropdown } from "react-bootstrap";
 import { IoCall, GiPositionMarker, AiFillCaretDown } from "react-icons/all";
+import { Redirect } from "react-router";
 import {
   Nav,
   NavLink,
@@ -20,10 +21,16 @@ function logOut() {
     localStorage.removeItem("email");
     localStorage.removeItem("type1");
     localStorage.removeItem("type2");
+    localStorage.removeItem("type3");
     localStorage.removeItem("userid");
     localStorage.removeItem("callhistory");
     setAuth(false);
+    <Redirect to="/login" />
+
+    
   }
+  
+
   return (
     <Nav>
     <NavLink to="/">
@@ -78,28 +85,96 @@ function logOut() {
 
       
       <div class="row">
+        <div class="col pt-2">
+        {localStorage.getItem("type2") && (<NavLink to='/addCall' class="iconnn  pe-1">{<FaPhoneSquareAlt size={28}/>}</NavLink>)}
+      </div>
         <div class="col-auto pt-2">
+      
       {localStorage.getItem("type1") && (<NavLink to='/appointmentlist' class="iconnn  pe-1">{<BsCalendarCheck size={25}/>}</NavLink>)}
       {localStorage.getItem("type2") && (<NavLink to='/appointmentlist1' class="iconnn  pe-1">{<BsCalendarCheck size={25}/>}</NavLink>)}
+      
+
+      
       </div>
       <div class="col pt-2">
-      <NavLink to='/login' class="iconnn  pe-1">{<BiMessageDetail size={32}/>}</NavLink>
-      </div>
-      <div class="col pt-2">
-      <NavLink to='/addCall' class="iconnn  pe-1">{<FaPhoneSquareAlt size={28}/>}</NavLink>
+
+      {localStorage.getItem("type1") && (<NavLink to='/message' class="iconnn  pe-1">{<BiMessageDetail size={32}/>}</NavLink>)}
+
+      {localStorage.getItem("type2") && (<NavLink to='/replies' class="iconnn  pe-1">{<BiMessageDetail size={32}/>}</NavLink>)}
+      
+      
+      
+      
+      
       </div>
       <div class="col">
         <div class="nadropdown">
         
-        <NavDropdown
+        {localStorage.getItem("type1") && localStorage.getItem("language") && (<NavDropdown
           title={<span className="text-thongtin">Tài khoản</span>}
           activeStyle
         >
           <NavDropdown.Item href={"/user/"+localStorage.getItem("userid")}>Thông tin cá nhân</NavDropdown.Item>
               <NavDropdown.Item href={"/representative/"+ localStorage.getItem("userid")}>Thông tin người đại diện</NavDropdown.Item>
-              <NavDropdown.Item href="#">Gửi tin nhắn</NavDropdown.Item>
+              
               <NavDropdown.Item href="#" onClick={logOut}>Đăng xuất</NavDropdown.Item>
-        </NavDropdown>
+        </NavDropdown>)}
+
+
+        {localStorage.getItem("type1") && !localStorage.getItem("language") && (<NavDropdown
+          title={<span className="text-thongtin">Account</span>}
+          activeStyle
+        >
+          <NavDropdown.Item href={"/user/"+localStorage.getItem("userid")}>Personal information</NavDropdown.Item>
+              <NavDropdown.Item href={"/representative/"+ localStorage.getItem("userid")}>Agent information</NavDropdown.Item>
+              
+              <NavDropdown.Item href="#" onClick={logOut}>Log Out</NavDropdown.Item>
+        </NavDropdown>)}
+
+        {localStorage.getItem("type2") && localStorage.getItem("language") && (<NavDropdown
+          title={<span className="text-thongtin">Tài khoản</span>}
+          activeStyle
+        >
+          <NavDropdown.Item href={"/staffInfo/"+localStorage.getItem("userid")}>Thông tin cá nhân</NavDropdown.Item>
+              
+              
+              <NavDropdown.Item href="#" onClick={logOut}>Đăng xuất</NavDropdown.Item>
+        </NavDropdown>)}
+
+        {localStorage.getItem("type2") && !localStorage.getItem("language") && (<NavDropdown
+          title={<span className="text-thongtin">Account</span>}
+          activeStyle
+        >
+          <NavDropdown.Item href={"/staffInfo/"+localStorage.getItem("userid")}>Personal information</NavDropdown.Item>
+              
+              
+              <NavDropdown.Item href="#" onClick={logOut}>Log Out</NavDropdown.Item>
+        </NavDropdown>)}
+
+        {localStorage.getItem("type3") && localStorage.getItem("language") && (<NavDropdown
+          title={<span className="text-thongtin">Tài khoản</span>}
+          activeStyle
+        >
+          <NavDropdown.Item href={"/user/"+localStorage.getItem("userid")}>Thông tin cá nhân</NavDropdown.Item>
+              
+              
+              <NavDropdown.Item href="#" onClick={logOut}>Đăng xuất</NavDropdown.Item>
+        </NavDropdown>)}
+
+
+        
+        {localStorage.getItem("type3") && !localStorage.getItem("language") && (<NavDropdown
+          title={<span className="text-thongtin">Account</span>}
+          activeStyle
+        >
+          <NavDropdown.Item href={"/user/"+localStorage.getItem("userid")}>Personal information</NavDropdown.Item>
+              
+              
+              <NavDropdown.Item href="#" onClick={logOut}>Log Out</NavDropdown.Item>
+        </NavDropdown>)}
+
+      
+
       </div>
       </div>
       </div>

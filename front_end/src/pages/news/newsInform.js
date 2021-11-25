@@ -43,14 +43,15 @@ const NewsInform = () =>  {
                 <div class="col-9 pt-4 ps-5 ">
                     <div className="page-container">
                         <div className="page-content">
-                            <p>{topic}</p>
+                        {localStorage.getItem("language")?<p>{"Chủ đề: "+ topic}</p>:<p>{"Subject: "+ topic}</p>}
                             <h2>{title}</h2>
                         </div>
                         <div>
                             <p>{Moment(addDay).utcOffset("+07:00")
                         .format("DD/MM/YYYY")}</p>
+                             <strong>{localStorage.getItem("language")?"Nội dung":"Content"}</strong>
                             <p>{content}</p>
-                            <strong>Tác giả:</strong> 
+                            <strong>{localStorage.getItem("language")?"Tác giả:":"Author:"}</strong> 
                             <p>{author}</p>
                         </div>
                     </div>

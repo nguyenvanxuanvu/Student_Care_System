@@ -8,7 +8,7 @@ const EventForm = () => {
         
 
     <div class="container">
-        <h3 align-items-center>Sự kiện mới</h3>
+        <h3 align-items-center>{localStorage.getItem("language")?"Sự kiện mới":"New event"}</h3>
         <div class="col-10 pt-3">
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" value="" placeholder=""/>

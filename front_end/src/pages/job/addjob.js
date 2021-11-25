@@ -36,6 +36,7 @@ class jobForm extends Component{
         }
         return true;
     }
+   
     isValidDate = () => {
         var data = this.state;
         var sd = new Date(data.sdate);
@@ -50,7 +51,7 @@ class jobForm extends Component{
         else{
         if (this.validateForm()) {
             console.log('successful');
-
+                let id = localStorage.getItem("userid");
             var postData = {
                 company: this.state.company,
                 jobname: this.state.jobname,
@@ -58,7 +59,8 @@ class jobForm extends Component{
                 address: this.state.address,
                 sdate: this.state.sdate,
                 edate: this.state.edate,
-                staffID: '1400001'
+                staffID: id,
+                addDay : this.handleDate(new Date().toLocaleDateString())
                 
             };
             axios.post('/addJob', postData)
@@ -79,20 +81,20 @@ class jobForm extends Component{
     return (
         <div class="row w-100">
       <div class="col-9">
-        <div className="container mt-30">
-            <div className="row">
+      <div className="mainscroll pt-3 pb-3 ps-3 pe-3">
+            <div className="row ps-5">
                 <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
                     <div className="panel panel-primary">
                         <div className="panel-heading">
                             
-                            {/* <h3 className="panel-title">{this.state.appointdate}</h3> */}
-                            <h3 className="panel-title">Thêm việc làm</h3>
+                         
+                             <h3 className="panel-title">{localStorage.getItem("language")? "Thêm việc làm":"Add job"}</h3>
                         </div>
                         <div className="panel-body">
 
                         <form onSubmit={ this.onHandleSubmit }>
                             <div className="form-group">
-                                <label>Tên công việc: </label>
+                                <label>{localStorage.getItem("language")?"Tên công việc:":"Job name:"} </label>
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -102,7 +104,7 @@ class jobForm extends Component{
                             </div><br/>
                             
                             <div className="form-group">
-                                <label>Công ty: </label>
+                                <label>{localStorage.getItem("language")?"Công ty:":"Company"} </label>
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -112,7 +114,7 @@ class jobForm extends Component{
                             </div><br/>
                             
                             <div className="form-group">
-                                <label>Số điện thoại: </label>
+                                <label>{localStorage.getItem("language")?"Số điện thoại:":"Phone number:"} </label>
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -123,7 +125,7 @@ class jobForm extends Component{
                             
                             
                             <div className="form-group">
-                                <label>Địa chỉ: </label>
+                                <label>{localStorage.getItem("language")?"Địa chỉ:":"Address:"} </label>
                                 <input 
                                 type="text" 
                                 className="form-control" 
@@ -132,17 +134,17 @@ class jobForm extends Component{
                                 />
                             </div><br/>
                             <div className="form-group">
-                                <label for="exampleDate" class="form-label">Ngày bắt đầu</label>
+                                <label for="exampleDate" class="form-label">{localStorage.getItem("language")?"Ngày bắt đầu tuyển dụng":"Recruitment start date"}</label>
                                 <input type="date" class="form-control" id="sdate"
                                 name="appointdate" onChange={(event) => this.setState({sdate : event.target.value})} />
                             </div><br/>
                             <div className="form-group">
-                                <label for="exampleDate" class="form-label">Ngày kết thúc</label>
+                                <label for="exampleDate" class="form-label">{localStorage.getItem("language")?"Ngày kết thúc tuyển dụng":"Recruitment end date"}</label>
                                 <input type="date" class="form-control" id="edate"
                                 name="appointdate" onChange={(event) => this.setState({edate : event.target.value})} />
                             </div><br/>
 
-                            <button type="submit" className="btn btn-primary">Thêm</button>
+                            <button type="submit" className="btn btn-primary">{localStorage.getItem("language")?"Thêm":"Add"}</button>
 
                         </form>
 

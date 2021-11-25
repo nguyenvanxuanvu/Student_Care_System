@@ -20,12 +20,12 @@ const News = () => {
       <div class="col-9">
         <div className="mainscroll pt-3 pb-3 ps-3 pe-3">
           <div class="pt-3 ps-5">
-            <h3>Học bổng</h3>
+            <h3>{localStorage.getItem("language")?"Học bổng":"Scholarship"}</h3>
 
-            <a class="btn btn-warning" href="/scholarform" role="button"> + Thêm học bổng</a>
+           {localStorage.getItem("type3") && (<a class="btn btn-warning" href="/scholarform" role="button"> {localStorage.getItem("language")?"+ Thêm học bổng":"Add scholarship"}</a>)}
 
 <div class="row pt-3 ps-2 pe-2">
-          {listScholarship.map((comment, key) => {
+          {listScholarship.sort((a,b)=>{return new Date(b.AddDay) - new Date(a.AddDay)}).map((comment, key) => {
             return (
               
                 <div class="col-lg-6  pt-5">

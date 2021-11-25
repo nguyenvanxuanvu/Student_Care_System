@@ -31,13 +31,13 @@ const RepreInfo = () => {
       <div className="col-9 instruct ps-5 pb-5">
         
         <div className="pt-5 ps-5 pe-5 pb-5">
-        <h3 className="pt-3">THÔNG TIN NGƯỜI ĐẠI DIỆN CỦA SINH VIÊN</h3>
+        <h3 className="pt-3">{localStorage.getItem("language")?"THÔNG TIN NGƯỜI ĐẠI DIỆN CỦA SINH VIÊN":"INFORMATION OF STUDENT REPRESENTATIVE"}</h3>
         <div class="card">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Họ và tên:
+                <li class="list-group-item">{localStorage.getItem("language")?"Họ và tên:":"Full name:"}
                     <p>{Name}</p>
                 </li>
-                <li class="list-group-item">Số điện thoại:
+                <li class="list-group-item">{localStorage.getItem("language")?"Số điện thoại:":"Phone number:"}
                     <p>{PhoneNum}</p>
                 </li>
             </ul>

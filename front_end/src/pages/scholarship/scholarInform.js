@@ -49,11 +49,11 @@ const ScholarInform = () =>  {
                 <h1>{name}</h1>
               </div>
               <div>
-                <h3>Đối tượng:</h3>
+                <h3>{localStorage.getItem("language")?"Đối tượng nhận học bổng":"Scholarship recipients"}</h3>
                 <p>{scope}</p>
               </div>
               <div>
-                <h3>Yêu cầu:</h3>
+                <h3>{localStorage.getItem("language")?"Yêu cầu":"Requirement"}</h3>
                 <div>
                   {listScholarshipRequire.map((comment, key) => {
                   return (
@@ -67,13 +67,13 @@ const ScholarInform = () =>  {
                 </div>
               </div>
               <div>
-                <h3>Trị giá</h3>
+                <h3>{localStorage.getItem("language")?"Trị giá":"Value"}</h3>
                 <p>{value}</p>
               </div>
               <div>
-                <h3>Thời gian</h3>
+                <h3>{localStorage.getItem("language")?"Thời gian nhận đơn":"Application time"}</h3>
                 <p><strong>{Moment(startTime).utcOffset('+07:00')
-                  .format("DD/MM/YYYY")}</strong> to <strong>{Moment(endTime).utcOffset('+07:00')
+                  .format("DD/MM/YYYY")}</strong> {localStorage.getItem("language")?"đến": "to"} <strong>{Moment(endTime).utcOffset('+07:00')
                   .format("DD/MM/YYYY")}</strong></p>
                 </div>
             </div>
