@@ -6,7 +6,7 @@ import Moment from 'moment'
 import scholarship from '../../images/scholarship.png'
 import axios from "axios";
 
-const News = () => {
+const Scholarship = () => {
   const [listScholarship, setlistScholarship] = useState([]);
 
   useEffect(() => {
@@ -48,4 +48,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Scholarship;

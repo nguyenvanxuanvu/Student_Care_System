@@ -6,7 +6,7 @@ const Instruction = () => {
   return (
     <div class="row w-100">
       {localStorage.getItem("language") && (<div class="col-9 instruct ps-5 pb-5">
-        <div class="backgr pt-5 ps-5 pe-5 pb-5">
+        <div class="backgr pt-5 ps-5 pb-4">
           <h1 style={{ color: "rgba(0, 153, 195, 1)" }}>VỀ CHÚNG TÔI</h1>
           <h3 class="pt-3">HỆ THỐNG CHĂM SÓC SINH VIÊN</h3>
           <h3> CỦA HỆ THỐNG GIÁO DỤC TRỰC TUYẾN.</h3>
@@ -66,7 +66,7 @@ const Instruction = () => {
         </div>
       </div>)}
 
-      <div class="col-3">
+      <div class="col-2">
         <Righthome />
       </div>
     </div>

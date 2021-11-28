@@ -95,27 +95,6 @@ const Message = () => {
      {localStorage.getItem("language") && (<DialogTitle>Gửi tin nhắn</DialogTitle>)}
      {!localStorage.getItem("language") && (<DialogTitle>Send message</DialogTitle>)}
        <DialogContent>
-         
-         {localStorage.getItem("language") && (<TextField
-           autoFocus
-           margin="dense"
-           id="ID"
-           label="MSSV"
-           type="email"
-           fullWidth
-           variant="standard"
-           
-         />)}
-         {!localStorage.getItem("language") && (<TextField
-           autoFocus
-           margin="dense"
-           id="ID"
-           label="ID"
-           type="email"
-           fullWidth
-           variant="standard"
-           
-         />)}
          {localStorage.getItem("language") &&
          (<TextField
            autoFocus

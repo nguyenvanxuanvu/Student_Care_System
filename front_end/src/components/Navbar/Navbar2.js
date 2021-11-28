@@ -117,7 +117,7 @@ function logOut() {
           <NavDropdown.Item href={"/user/"+localStorage.getItem("userid")}>Thông tin cá nhân</NavDropdown.Item>
               <NavDropdown.Item href={"/representative/"+ localStorage.getItem("userid")}>Thông tin người đại diện</NavDropdown.Item>
               
-              <NavDropdown.Item href="/home" onClick={logOut}>Đăng xuất</NavDropdown.Item>
+              <NavDropdown.Item href="#" onClick={logOut}>Đăng xuất</NavDropdown.Item>
         </NavDropdown>)}
 
 
@@ -128,7 +128,7 @@ function logOut() {
           <NavDropdown.Item href={"/user/"+localStorage.getItem("userid")}>Personal information</NavDropdown.Item>
               <NavDropdown.Item href={"/representative/"+ localStorage.getItem("userid")}>Agent information</NavDropdown.Item>
               
-              <NavDropdown.Item href="/home" onClick={logOut}>Log Out</NavDropdown.Item>
+              <NavDropdown.Item href="#" onClick={logOut}>Log Out</NavDropdown.Item>
         </NavDropdown>)}
 
         {localStorage.getItem("type2") && localStorage.getItem("language") && (<NavDropdown
@@ -138,7 +138,7 @@ function logOut() {
           <NavDropdown.Item href={"/staffInfo/"+localStorage.getItem("userid")}>Thông tin cá nhân</NavDropdown.Item>
               
               
-              <NavDropdown.Item href="/home" onClick={logOut}>Đăng xuất</NavDropdown.Item>
+              <NavDropdown.Item href="#" onClick={logOut}>Đăng xuất</NavDropdown.Item>
         </NavDropdown>)}
 
         {localStorage.getItem("type2") && !localStorage.getItem("language") && (<NavDropdown
@@ -148,7 +148,7 @@ function logOut() {
           <NavDropdown.Item href={"/staffInfo/"+localStorage.getItem("userid")}>Personal information</NavDropdown.Item>
               
               
-              <NavDropdown.Item href="/home" onClick={logOut}>Log Out</NavDropdown.Item>
+              <NavDropdown.Item href="#" onClick={logOut}>Log Out</NavDropdown.Item>
         </NavDropdown>)}
 
         {localStorage.getItem("type3") && localStorage.getItem("language") && (<NavDropdown
@@ -158,7 +158,7 @@ function logOut() {
           <NavDropdown.Item href={"/affairInfo/"+localStorage.getItem("userid")}>Thông tin cá nhân</NavDropdown.Item>
               
               
-              <NavDropdown.Item href="/home" onClick={logOut}>Đăng xuất</NavDropdown.Item>
+              <NavDropdown.Item href="#" onClick={logOut}>Đăng xuất</NavDropdown.Item>
         </NavDropdown>)}
 
 
@@ -170,7 +170,7 @@ function logOut() {
           <NavDropdown.Item href={"/affairInfo/"+localStorage.getItem("userid")}>Personal information</NavDropdown.Item>
               
               
-              <NavDropdown.Item href="/home" onClick={logOut}>Log Out</NavDropdown.Item>
+              <NavDropdown.Item href="#" onClick={logOut}>Log Out</NavDropdown.Item>
         </NavDropdown>)}
 
       

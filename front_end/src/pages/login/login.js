@@ -15,7 +15,7 @@ export default function Login({auth, setAuth}) {
        
         console.log(pwd);
         
-        if(pwd==='1'){
+        if(pwd==='1111'){
 
         
         // localStorage.setItem("email", email);
@@ -23,7 +23,7 @@ export default function Login({auth, setAuth}) {
         setAuth(true);
         localStorage.setItem("userid",ID);
         }
-        if(pwd==='2'){
+        if(pwd==='2222'){
 
         
             // localStorage.setItem("email", email);
@@ -32,7 +32,7 @@ export default function Login({auth, setAuth}) {
             localStorage.setItem("userid",ID);
             }
         
-        if(pwd==='3'){
+        if(pwd==='3333'){
 
         
             // localStorage.setItem("email", email);

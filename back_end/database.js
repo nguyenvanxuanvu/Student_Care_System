@@ -134,6 +134,7 @@ exports.getStaffInfoWithID = function(id,callbackQuery){
         }
     })
 }
+
 // Get Affair Info
 exports.getAffairEmpInfoWithID = function(id,callbackQuery){
     connect();

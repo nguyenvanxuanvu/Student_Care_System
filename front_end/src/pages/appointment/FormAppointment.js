@@ -36,9 +36,9 @@ class AppointmentForm extends Component{
     onHandleSubmit(event){
         if (this.validateForm()) {
             console.log('successful');
-
+            let id = localStorage.getItem("userid");
             var postData = {
-                StudentID: this.state.userid,
+                StudentID: id,
                  Date: this.state.appointdate,
                 Time: this.state.appointhour,
                 //  Date: Moment(this.state.appointdate).utcOffset('+07:00')

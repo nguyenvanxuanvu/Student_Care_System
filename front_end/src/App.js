@@ -64,25 +64,24 @@ function App() {
         
         <Route exact path='/news/:id' component={NewsInform} />
         <Route exact path='/signin' component={SignIn} />
-        <Route exact path='/appointmentform' render={props => auth ? <AppointmentForm/> : <Login auth={auth} setAuth={setAuth}/>} />
-        <Route exact path='/ratingform' render={props => auth ? <RatingForm/> : <Login auth={auth} setAuth={setAuth}/>} />
-        <Route exact path='/listrating' render={props => auth ? <ListRating/> : <Login auth={auth} setAuth={setAuth}/>} />
+        <Route exact path='/appointmentform' render={props => auth ? <AppointmentForm/> : <Home/>} />
+        <Route exact path='/ratingform' render={props => auth ? <RatingForm/> : <Home/>} />
+        <Route exact path='/listrating' render={props => auth ? <ListRating/> : <Home/>} />
         <Route exact path='/addEvent' component= {EventForm}/>
-        <Route exact path='/user/:id' render={props => auth ? <UserInfo/> : <Login auth={auth} setAuth={setAuth}/>}/>
-        <Route exact path='/representative/:id' render={props => auth ? <RepreInfo/> : <Login auth={auth} setAuth={setAuth}/>}/>
-        <Route exact path='/appointmentlist' render={props => auth ? <Appointmentlist/> : <Login auth={auth} setAuth={setAuth}/>}/>
-        <Route exact path='/appointmentlist1' render={props => auth ? <Appointmentlist1/> : <Login auth={auth} setAuth={setAuth}/>}/>
-        <Route exact path='/message' render={props => auth ? <Message/> : <Login auth={auth} setAuth={setAuth}/>}/>
-        <Route exact path='/replies' render={props => auth ? <Replies/> : <Login auth={auth} setAuth={setAuth}/>}/>
+        <Route exact path='/user/:id' render={props => auth ? <UserInfo/> : <Home/>}/>
+        <Route exact path='/representative/:id' render={props => auth ? <RepreInfo/> : <Home/>}/>
+        <Route exact path='/appointmentlist' render={props => auth ? <Appointmentlist/> : <Home/>}/>
+        <Route exact path='/appointmentlist1' render={props => auth ? <Appointmentlist1/> : <Home/>}/>
+        <Route exact path='/message' render={props => auth ? <Message/> : <Home/>}/>
+        <Route exact path='/replies' render={props => auth ? <Replies/> : <Home/>}/>
         <Route exact path='/newsform' component= {newsForm}/>
         <Route exact path='/eventform' component= {eventForm}/>
         <Route exact path='/jobform' component={jobForm}/>
         <Route exact path='/scholarform' component={scholarForm}/>
       
-        <Route exact path='/staffInfo/:id' component={StaffInfo}/>
+        <Route exact path='/staffInfo/:id' render={props => auth ? <StaffInfo/> : <Home/>}/>
         <Route exact path='/addCall' component={AddCall}/>
-        <Route exact path='/affairInfo/:id' component={AffairInfo}/>
-
+        <Route exact path='/affairInfo/:id' render={props => auth ? <AffairInfo/> : <Home/>}/>
       </Switch>
       
     </Router>

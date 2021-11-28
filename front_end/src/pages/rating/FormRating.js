@@ -12,10 +12,10 @@ const RatingForm = () =>{
     var [rate,setRate] = useState('')
     var [mssv,setmssv] = useState('')
     const onHandleSubmit = () => {
-       
+       let id = localStorage.getItem("userid")
         var postData = {
             Content : rate,
-            ID: mssv,
+            ID: id,
             Date: formatDate1(new Date().toLocaleDateString())
            
     
